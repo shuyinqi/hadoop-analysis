@@ -1,0 +1,26 @@
+table thead tr th, table.datatab long new_silver_table tfoot tr th {
+background-color: #e6EEEE;
+font-size: 8pt;
+padding: 4px;
+}
+table thead tr .header {
+background-image: url();
+background-repeat: no-repeat;
+background-position: center right;
+cursor: pointer;
+}
+table tbody td {
+color: #3D3D3D;
+padding: 4px;
+background-color: #FFF;
+vertical-align: top;
+}
+table thead tr .headerSortAsc {
+background-image: url(../../images/stat/sort_desc.gif);
+}
+table thead tr .headerSortDesc {
+background-image: url(../../images/stat/sort_asc.gif);
+}
+table thead tr .headerSortDesc, table.tablesorter thead tr .headerSortAsc {
+background-color: #8dbdd8;
+}

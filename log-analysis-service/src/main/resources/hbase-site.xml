@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property>
+        <name>hbase.rootdir</name>
+        <value>hdfs://jishu-tset-192-168-0-162:9000/hbase</value>
+    </property>
+      <property>
+        <name>dfs.replication</name>
+        <value>3</value>
+    </property>
+    <property>
+        <name>hbase.cluster.distributed</name>
+        <value>true</value>
+    </property>
+    <property>
+        <name>dfs.support.append</name>
+        <value>true</value>
+    </property>
+    <property>
+        <name>hbase.zookeeper.quorum</name>
+        <value>jishu-tset-192-168-0-162</value>
+    </property>
+    <property>
+        <name>hbase.zookeeper.property.maxClientCnxns</name>
+        <value>300</value>
+    </property>
+    <property>
+        <name>hbase.hregion.max.filesize</name>
+        <value>256M</value>
+    </property>
+    <property>
+        <name>hbase.regionserver.handler.count</name>
+        <value>50</value>
+    </property>
+
+	<property>
+	    <name>hbase.regionserver.handler.count</name>
+	    <value>50</value>
+	</property>
+	<property>
+	    <name>hbase.hregion.majorcompaction</name>
+	    <value>3600000</value>
+	</property>
+	<property>
+	    <name>zookeeper.session.timeout</name>
+	    <value>90000</value>
+	</property>
+	<property>
+	    <name>hbase.regionserver.restart.on.zk.expire</name>
+	    <value>true</value>
+	</property>
+	<property>
+	    <name>hbase.master.wait.on.regionservers.timeout</name>
+	    <value>10</value>
+	</property>
+</configuration>

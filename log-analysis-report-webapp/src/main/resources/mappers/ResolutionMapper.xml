@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mapbar.analyzelog.report.mapper.ResolutionMapper">
+
+	<select id="select" flushCache="false" fetchSize="256" useCache="true" timeout="20000" statementType="PREPARED"
+		resultType="ResolutionVO">
+	<![CDATA[
+	 select device,newcount,launchcount from ( 
+      select resolution as device,sum(new_user_count) as newcount,sum(launch_user_count) as launchcount FROM la_resolution_stat   
+    ]]>
+    <where>
+			<if test="appid!=null">
+				appid=${appid}
+			</if>
+	</where>
+     group by resolution )a order by launchcount desc
+	</select>
+	
+	<select id="selectnews" flushCache="false" fetchSize="256" useCache="true" timeout="20000" statementType="PREPARED"
+		resultType="ResolutionVO">
+	<![CDATA[
+	 select device,newcount,launchcount from ( 
+       select resolution as device,sum(new_user_count) as newcount,sum(launch_user_count) as launchcount FROM la_resolution_stat 
+    ]]>
+    <where>
+			<if test="appid!=null">
+				appid=${appid}
+			</if>
+	</where>
+    group by resolution )a order by newcount desc limit 10
+	</select>
+
+	<select id="selectByDay" flushCache="false" fetchSize="256" useCache="true" timeout="20000" statementType="PREPARED"
+		resultType="ResolutionVO">
+	<![CDATA[
+       select device,newcount,launchcount from (
+        select resolution as device,sum(new_user_count) as newcount,sum(launch_user_count) as launchcount FROM la_resolution_stat   
+    ]]>
+		<where>
+			<if test="date1!=null">
+				date >='${date1}'
+			</if>
+			<if test="date2!=null">
+				AND date &lt;='${date2}'
+			</if>
+			<if test="appid!=null">
+				AND appid=${appid}
+			</if>
+		</where>
+		 group by resolution )a order by launchcount desc
+	</select>
+
+	<select id="selectNewsByDay" flushCache="false" fetchSize="256" useCache="true" timeout="20000" statementType="PREPARED"
+		resultType="ResolutionVO">
+	<![CDATA[
+       select device,newcount,launchcount from ( 
+       select resolution as device,sum(new_user_count) as newcount,sum(launch_user_count) as launchcount FROM la_resolution_stat   
+    ]]>
+		<where>
+			<if test="date1!=null">
+				date >='${date1}'
+			</if>
+			<if test="date2!=null">
+				AND date &lt;='${date2}'
+			</if>
+			<if test="appid!=null">
+				AND appid=${appid}
+			</if>
+		</where>
+		 group by resolution )a order by newcount desc limit 10
+	</select>
+</mapper>

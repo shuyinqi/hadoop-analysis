@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<property>
+		<name>mapred.jdbc.url</name>
+		 <value>jdbc:mysql://localhost:3306/analyzelog?useUnicode=true&amp;characterEncoding=UTF-8</value> 
+	</property>
+	<property>
+		<name>mapred.jdbc.driver.class</name>
+		<value>com.mysql.jdbc.Driver</value>
+	</property>
+	<property>
+		<name>mapred.jdbc.username</name>
+		<value>root</value>
+	</property>
+	<property>
+		<name>mapred.jdbc.password</name>
+		<value>sa</value>
+	</property>
+</configuration>

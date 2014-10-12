@@ -1,0 +1,148 @@
+/* 
+    Document   : settings
+    Created on : Aug 12, 2011, 1:33:05 PM
+    Author     : hero
+    Description: settings page styles.
+*/
+
+/*
+    Top nav of settings page.
+*/
+ #main{
+	background-image: url("/images/new_ui/404/line.png");
+    background-repeat: repeat;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  #main-text{
+    font-size: 30px;
+    text-align: center;
+    margin-top: -190px;
+    color: #777;
+  }
+  .links{
+    margin-top: 20px;
+  }
+  .links a:hover{
+    text-decoration: none;
+  }
+  td{
+    padding: 5px 0;
+  }
+  div.result{
+    color: #EA5200;
+  }
+#settings_top_nav{
+  margin: 40px 0 20px 0;
+  position: relative;
+}
+#settings_top_nav ul{
+  margin: 0px 15px;
+}
+#settings_top_nav ul li{
+  float: left;
+  background: url('/images/setting_tab.png') no-repeat 0 0 white;
+  height: 29px;
+  margin: 0 20px 0 auto;
+  z-index: 99;
+  padding-left: 15px;
+}
+#settings_top_nav ul li#active{
+  height: 30px;
+}
+#settings_top_nav ul li span{
+  height: 22px;
+  padding: 7px 15px 0 0;
+  display: inline-block;
+  background: url('/images/setting_tab.png') no-repeat top right white;
+}
+#settings_top_nav ul li span a{
+  color: #2C6EC7;
+}
+#settings_top_nav ul li span a:hover{
+  text-decoration: underline;
+}
+#settings_top_nav hr{
+  width: 100%;
+  height: 1px;
+  color: #d8d8d8;
+  z-index: -1;
+  position: absolute;
+  top: 29px;
+}
+
+/*
+    Permissions Form
+*/
+.email_and_id{
+    padding: 0 0 20px 0;
+}
+.email_and_id input{
+    border: 1px solid #CCCCCC;
+    height: 1.5em;
+}
+.permissions{
+    border: 1px solid #CCCCCC;
+    padding: 15px;
+}
+.permissions span{
+    font-weight: bold;
+    font-style: italic;
+}
+.permissions ul li{
+    padding: 20px 15px 20px 20px;
+    border-bottom: 1px solid #CCCCCC;
+}
+.permissions ul li ul li{
+    margin: 5px 15px;
+    border: none;
+    padding: 0;
+}
+.permissions .cancel_edit{
+    color: #2C6EC7;
+    margin: 25px 0 0 15px;
+    float: left;
+}
+
+table tr.permissions td{
+    padding: 15px 10px;
+}
+
+#action_info{
+    padding: 20px 30px;
+}
+
+#add_authorised_user_btn{
+    margin: 15px 0 25px 12px;
+    color: #2C6EC7;
+    display: inline-block;
+}
+
+/*
+*  Edit Password & Edit User Info table style
+*/
+table.center_table td{
+    padding: 5px 0;
+}
+table.center_table td div.result{
+    color: #EA5200;
+}
+
+/*
+* Common styles
+*/
+
+td a{
+   color: #2C6EC7;
+   margin-right: 15px;
+}
+
+.tips{  /* same as .event_show_tips@base.css */
+    background-color: #FFFCF3;
+    border: 1px solid #EEBE7C;
+    display: none;
+    line-height: 170%;
+    margin: 0 0 10px;
+    padding: 10px 0 5px 15px;
+}

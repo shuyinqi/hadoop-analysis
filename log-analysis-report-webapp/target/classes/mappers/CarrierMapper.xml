@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mapbar.analyzelog.report.mapper.CarrierMapper">
+
+	<select id="select" flushCache="false" fetchSize="256"
+		resultType="CarrierVO">
+	<![CDATA[
+        select device,sum(newcount) as newcount,sum(launchcount) as launchcount from (select case when (device like '%CMCC%' or device like '%移动%' or device like '%移動%'  or device like '%China Mobile%' ) then  '中国移动' else  case when  (device like '%UNICOM%'  or device like '%CUGSM%'  or device like '%联通%' or device like '%聯通%' ) then '中国联通' else case when ( device like '%Telecom%'   or device like '%电信%' or device like '%電信%' ) then '中国电信' else  '其他' end end end as 'device',newcount,launchcount from ( select carrier as device,sum(new_user_count) as newcount,sum(launch_user_count) as launchcount FROM la_carrier_stat 
+    ]]>
+    <where>
+			<if test="appid!=null">
+				appid=${appid}
+			</if>
+	</where>
+	group by carrier)a)b group by b.device
+    	order by launchcount
+	</select>
+
+	<select id="selectByDay" flushCache="false" fetchSize="256"
+		resultType="CarrierVO">
+	<![CDATA[
+        select device,sum(newcount) as newcount,sum(launchcount) as launchcount from (select case when (device like '%CMCC%' or device like '%移动%' or device like '%移動%'  or device like '%China Mobile%' ) then  '中国移动' else  case when  (device like '%UNICOM%'  or device like '%CUGSM%'  or device like '%联通%' or device like '%聯通%' ) then '中国联通' else case when ( device like '%Telecom%'   or device like '%电信%' or device like '%電信%' ) then '中国电信' else  '其他' end end end as 'device',newcount,launchcount from ( select carrier as device,sum(new_user_count) as newcount,sum(launch_user_count) as launchcount FROM la_carrier_stat 
+    ]]>
+		<where>
+			<if test="appid!=null">
+				appid=${appid}
+			</if>
+			<if test="date1!=null">
+				and date >='${date1}'
+			</if>
+			<if test="date2!=null">
+				AND date &lt;='${date2}'
+			</if>
+		</where>
+		 group by carrier)a)b group by b.device order by launchcount
+	</select>
+
+</mapper>

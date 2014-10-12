@@ -1,0 +1,162 @@
+*{
+  margin:0;
+  padding:0;
+}
+.remind_table {
+	border-collapse:collapse;
+	border-spacing:0;
+}
+.PopLayer {
+	position:absolute;
+}
+.Poptips .Poparrow1,
+.Poptips .Poparrow2,
+.Poptips .Poparrow3,
+.Poptips .Poparrow4 {
+	background-image:url(../images/poptips/poparrow.png);
+	_background-image:url(../images/poptips/poparrow.gif);
+	background-repeat:no-repeat;
+	overflow:hidden;
+	position:absolute;
+}
+.Poptips .Poparrow1 {
+	background-position:0 0;
+	width:17px;
+	height:8px;
+	margin-left:-9px;
+	left:50%;
+	top:-11px;
+}
+.Poptips .Poparrow2 {
+	background-position:-30px 0;
+	width:10px;
+	height:18px;
+	right:-13px;
+	top:50%;
+	margin-top:-9px;
+}
+.Poptips .Poparrow3 {
+	background-position:0 -20px;
+	width:19px;
+	height:10px;
+	margin-left:-9px;
+	left:50%;
+	bottom:-13px;
+}
+.Poptips .Poparrow4 {
+	background-position:-32px -20px;
+	width:9px;
+	height:20px;
+	left:-11px;
+	top:50%;
+	margin-top:-10px;
+}
+.Poptips .top_l {
+	width:5px;
+	height:5px;
+	background:url(../images/poptips/wraplayer_03.gif) no-repeat;
+}
+.Poptips .top_c {
+	height:5px;
+	background:url(../images/poptips/wraplayer_09.gif) repeat-x;
+}
+.Poptips .top_r {
+	width:5px;
+	height:5px;
+	background:url(../images/poptips/wraplayer_05.gif) no-repeat;
+}
+.Poptips .mid_l {
+	width:5px;
+	background:url(../images/poptips/wraplayer_10.gif) repeat-y;
+}
+.Poptips .mid_c {
+	background:#fff;
+}
+.Poptips .mid_r {
+	width:5px;
+	background:url(../images/poptips/wraplayer_08.png) repeat-y;
+	_background:url(../images/poptips/wraplayer_08.gif) repeat-y;
+}
+.Poptips .bottom_l {
+	width:5px;
+	height:5px;
+	background:url(../images/poptips/wraplayer_11.gif) no-repeat;
+}
+.Poptips .bottom_c {
+	height:5px;
+	background:url(../images/poptips/wraplayer_07.png) repeat-x;
+	_background:url(../images/poptips/wraplayer_07.gif) repeat-x;
+}
+.Poptips .bottom_r {
+	width:5px;
+	height:5px;
+	background:url(../images/poptips/wraplayer_12.png) no-repeat;
+	_background:url(../images/poptips/wraplayer_12.gif) no-repeat;
+}
+.Poptips .layerBox {
+	border:1px solid #fff;
+}
+.Poptips .layerBox .layerBoxTop {
+	height:27px;
+	line-height:27px;
+	padding:1px;
+}
+.Poptips .layerBox .layerBoxTop .topCon {
+	background:url(../images/poptips/layerctbg.gif) repeat-x;
+	height:27px;
+	line-height:27px;
+	padding:0 10px;
+}
+.Poptips .topCon strong {
+	float:left;
+	font-weight:bold;
+}
+.Poptips .topCon span {
+	float:right;
+	padding-right:20px;
+}
+.Poptips .Pop_close {
+	position:absolute;
+	right:5px;
+	top:7px;
+}
+.Poptips a.close {
+	float:right;
+	background:url(../images/poptips/sicon.gif) no-repeat -18px 0;
+	width:7px;
+	height:8px;
+	overflow:hidden;
+}
+.Poptips a.close:hover {
+	background:url(../images/poptips/sicon.gif) no-repeat -18px -8px;
+	overflow:hidden;
+}
+.PopInfo {
+	position:relative;
+}
+.PopInfo .iconntent {
+	padding: 4px 62px 3px 9px;
+	clear:both;
+}
+.popMod_1 .img {
+	float:left;
+}
+.popMod_1 p {
+	margin-left:55px;
+}
+.popMod_2 .tits {
+	color:#333;
+	font-weight:600;
+	padding:0 0 5px;
+	z-index:66;
+}
+.popMod_2 .infos {
+	line-height:18px;
+	padding-bottom:7px;
+}
+.popMod_2 .infos2 {
+	line-height:18px;
+}
+.popMod_2 .infos2 a {
+	text-decoration:underline;
+}

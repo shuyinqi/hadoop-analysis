@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>配置信息发送接口</title>
+<script type="text/javascript">
+	function sdbmit() {
+		var theForm = document.getElementById("form1");
+		var appid = document.getElementById("appid").value;
+		var userid = document.getElementById("userid").value;
+		var cur_url = window.location.href;
+		var urls = cur_url.split("?");
+		if (urls.length < 2) {
+			alert("unknown post server!");
+		} else {
+			var server = urls[1].split("=")[1];
+			theForm.action = "http://" + server + "/config/app/" + appid
+					+ "/user/" + userid;
+			theForm.submit();
+		}
+	}
+</script>
+</head>
+<body>
+	用户设备信息：
+	<form name="form1" method="POST" id="form1">
+		<label for="appid">appid</label> <input name="appid" id="appid" value="1000"
+			readonly="readonly" /> <br /> <label for="userid">userid</label> <input
+			name="userid"  id="userid" value="2bac35dcf07884cf2cdb5b62fd8a58ac" /> <br />
+		发送JSON数据:
+		({"uid":["358000043898442","D4:20:6D:D6:95:8A"],"os":"Android","lon":"116.34928158571428","rsin":"800*480","tm":8,"osv":"2.3.3","cpu":"ARMv7
+		Processor rev 1
+		(v7l)","type":"online_config","lang":"Unknown","country":"Unknown","appv":1,"sdkv":"3.1.0","time":"2012-02-14
+		14:51:52","dm":"HTC Incredible
+		S","brand":"HTC","chn":"market","pinfo":[null,null],"cht":"1","lat":"39.921540614285725"}
+		<br />
+		<TEXTAREA NAME="content" COLS=130 ROWS=20>{"uid":["358000043898442","D4:20:6D:D6:95:8A"],"os":"Android","lon":"116.34928158571428","rsin":"800*480","tm":8,"osv":"2.3.3","cpu":"ARMv7 Processor rev 1 (v7l)","type":"online_config","lang":"Unknown","country":"Unknown","appv":1,"sdkv":"3.1.0","time":"2012-02-14 14:51:52","dm":"HTC Incredible S","brand":"HTC","chn":"market","pinfo":[null,null],"cht":"1","lat":"39.921540614285725"}
+	</TEXTAREA>
+		<br /> <input type="button" value="Submit" id="sdbutton"
+			onclick="sdbmit();" />
+	</form>
+</body>
+</html>

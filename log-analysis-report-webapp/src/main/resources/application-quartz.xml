@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+ <!--第一步 声明一个定时任务,注意不是直接声明,而是声明一个JobDetailBean,通过jobClass属性设置一个定时对象 -->
+<bean id="quartzClock" class="org.springframework.scheduling.quartz.JobDetailBean">
+   <property name="jobClass">
+    <value>com.mapbar.analyzelog.report.reptail.TaskUsingQuartz</value>
+    </property>
+</bean>
+
+<!-- 配置正式的任务调度器 -->  
+<bean id="cronQuartzClock" class="org.springframework.scheduling.quartz.CronTriggerBean">
+   <property name="jobDetail">
+  <!--  需要自动调度的任务BEAN -->  
+    <ref bean="quartzClock"></ref>
+   </property>
+   <property name="cronExpression">
+   <!--设置任务执行的时间,这里设置为每天凌晨1点0分执行任务-->  
+   <value>0 0 1 * * ?</value>  
+ </property></bean>
+
+<!-- 配置Spring-Quartz定时出发器   -->
+<bean  lazy-init="false" autowire="no"  class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+   <property name="triggers">
+    <list>
+    <!--定时任务id,可以配置多个-->
+    <ref bean="cronQuartzClock"></ref>
+    </list>
+   </property>
+</bean>
+
+</beans>

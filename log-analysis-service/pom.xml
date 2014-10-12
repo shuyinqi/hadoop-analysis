@@ -1,0 +1,101 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.mapbar.analyzelog</groupId>
+		<artifactId>log-analysis-parent</artifactId>
+		<version>1.0.0</version>
+	</parent>
+
+	<artifactId>log-analysis-service</artifactId>
+	<packaging>jar</packaging>
+	<version>${log-analysis.version}</version>
+	<name>log analysis service</name>
+
+	<build>
+		<finalName>log-analysis-service-${log-analysis.version}</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<outputDirectory>${project.build.directory}</outputDirectory>
+					<excludes>                                        <!-- jar���в�����Դ�ļ� -->
+						<exclude>*.properties</exclude>
+						<exclude>*.xml</exclude>
+						<exclude>*.config</exclude>
+					</excludes>
+					<!--<useDefaultManifestFile>true</useDefaultManifestFile> -->
+					<archive>
+						<addMavenDescriptor>false</addMavenDescriptor>  <!-- jar���в���pom�ļ� -->
+						<manifest>
+							<mainClass>com.mapbar.analyzelog.service.JobBootstrap</mainClass>
+							<packageName>com.mapbar.analyzelog.service</packageName>
+						</manifest>
+						<manifestEntries>
+							<mode>development</mode>
+							<url>${pom.url}</url>
+						</manifestEntries>
+					</archive>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.2.1</version>
+				<configuration>
+					<descriptors>
+						<descriptor>src/assembly/assembly.xml</descriptor>
+					</descriptors>
+					<archive>
+						<manifest>
+							<mainClass>com.mapbar.analyzelog.service.JobBootstrap</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+				<executions>
+					<execution>
+						<id>make-assembly</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.mapbar.analyzelog</groupId>
+			<artifactId>log-analysis-core</artifactId>
+			<version>${log-analysis.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.8</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.hbase</groupId>
+			<artifactId>hbase</artifactId>
+			<version>${hbase.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.hadoop</groupId>
+			<artifactId>hadoop-core</artifactId>
+			<version>${hadoop.version}</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+</project>

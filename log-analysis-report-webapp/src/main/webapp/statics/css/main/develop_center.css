@@ -1,0 +1,126 @@
+
+.floatLeft {
+    float: left;
+    margin-right: 10px;
+}
+
+.floatRight {
+    float: right;
+}
+
+.clear {
+    clear: both;
+}
+
+a {
+    outline: none;
+}
+
+/*
+    PAGE STRUCTURE
+*/
+#page-wrap {
+    width: 950px;
+    position: relative;
+}
+/*
+	SLIDER
+*/
+.slider-wrap {
+    width: 950px;
+    /*position: absolute;*/
+    top: 0px;
+}
+#center .slider-wrap a:hover {
+    text-decoration: none;
+}
+.stripViewer .panelContainer
+.panel ul {
+    text-align: left;
+    margin: 0 15px 0 30px;
+}
+.stripViewer {
+    position: relative;
+    overflow: hidden;
+    width: 705px;
+    padding-left: 245px;
+	z-index:10;
+}
+.stripViewer * {
+	z-index:10;
+}
+.stripViewer .panelContainer {
+    position: relative;
+    left: 0;
+    top: 0;
+}
+.stripViewer .panelContainer .panel {
+    float: left;
+    height: 100%;
+    position: relative;
+    width: 950px;
+    min-height:1100px;
+	/*padding-left:20px;*/
+}
+.wrapper {
+	padding-left:0px;
+	width:705px;
+	/*margin-top: 35px;*/
+}
+.wrapper .deveguide_info {
+	height: 200px;
+    padding: 10px 0 0 0;
+    width: 700px;
+	/*margin-top: 35px;*/
+}
+.stripNavL, .stripNavR, .stripNav {
+    display: none;
+}
+
+.nav-thumb {
+    border: 1px solid black;
+    margin-right: 5px;
+}
+
+#movers-row {
+    margin: 0px;
+    position: absolute;
+    left:0px;
+    top:0;
+    width: 214px;
+	z-index:1000;
+}
+#movers-row *{
+	z-index:1000;
+}
+
+#movers-row div {
+    /* width: 20%; */
+}
+
+#movers-row div a.cross-link {
+}
+
+.photo-meta-data {
+    background: url("../../images/main/transpBlack.png");
+    padding: 10px;
+    height: 30px;
+    margin-top: -50px;
+    position: relative;
+    z-index: 9999;
+    color: white;
+}
+.photo-meta-data span {
+    font-size: 13px;
+}
+.cross-link {
+}
+.active-thumb {
+    background: transparent url("../../images/main/icon-uparrowsmallwhite.png") top center no-repeat;
+}
+
+
+
+
+
+

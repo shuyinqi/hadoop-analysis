@@ -1,0 +1,34 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<%@page language="java" contentType="text/html; charset=gb2312"%>
+<html xmlns="http://www.w3.org/1999/xhtml" >
+ <head>
+  <title>number two test interface</title>
+ <script type="text/javascript">
+	function sdbmit(){
+		var theForm = document.forms['form1'];
+			var appid=document.getElementById("appid").value;
+			var userid=document.getElementById("userid").value;
+			theForm.action = "http://192.168.53.67/config/app/"+appid+"/user/"+userid;
+			theForm.submit();
+		}
+	</script>
+ </head>
+<body>
+第2个接口测试
+	<form name="form1" method="POST">
+	<label for="appid">appid</label>
+	<input name="appid" value="1000" readonly="readonly"/>
+	<br/>
+	<label for="userid">userid</label>
+	<input name="userid" value="2bac35dcf07884cf2cdb5b62fd8a58ac"/>
+	<br/>
+	请输入要测试接口的json串:
+	(例：{"uid":["358000043898442","D4:20:6D:D6:95:8A"],"os":"Android","lon":"116.34928158571428","rsin":"800*480","tm":8,"osv":"2.3.3","cpu":"ARMv7 Processor rev 1 (v7l)","type":"online_config","lang":"Unknown","country":"Unknown","appv":1,"sdkv":"3.1.0","time":"2012-02-14 14:51:52","dm":"HTC Incredible S","brand":"HTC","chn":"market","pinfo":[null,null],"cht":"1","lat":"39.921540614285725"}
+	<br/>
+	<TEXTAREA NAME="content" COLS=130 ROWS=20 >{"uid":["358000043898442","D4:20:6D:D6:95:8A"],"os":"Android","lon":"116.34928158571428","rsin":"800*480","tm":8,"osv":"2.3.3","cpu":"ARMv7 Processor rev 1 (v7l)","type":"online_config","lang":"Unknown","country":"Unknown","appv":1,"sdkv":"3.1.0","time":"2012-02-14 14:51:52","dm":"HTC Incredible S","brand":"HTC","chn":"market","pinfo":[null,null],"cht":"1","lat":"39.921540614285725"}
+	</TEXTAREA>
+	<br/>
+	<input type="button" value="Submit" id="sdbutton" onclick="this.disabled=true;sdbmit();"/>
+	</form>
+</body>
+</html>

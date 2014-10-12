@@ -1,0 +1,31 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<%@page language="java" contentType="text/html; charset=gb2312"%>
+<html xmlns="http://www.w3.org/1999/xhtml" >
+ <head>
+  <title>number three test interface</title>
+  <script type="text/javascript">
+	
+		function sdbmit(){
+		var theForm = document.forms['form1'];
+			var userid = document.getElementById("userid").value;
+			theForm.action = "http://localhost:8080/reports/config/app/"+"1000"+"/feedbacks/"+userid;
+			document.getElementById("sdbutton").disabled=true;
+			theForm.submit();
+		}
+	</script>
+ </head>
+<body>
+第5个接口测试
+	<form name="form1" method="POST">
+	userid:<input id="userid" value="2bac35dcf07884cf2cdb5b62fd8a58ac" />
+	<br/>
+	请输入要测试接口的json串:
+	(例：{"note":"备注","ct":"测试反馈","lon":"116.46669122857143","lat":"39.94223828571429"})
+	<br/>
+	<TEXTAREA NAME="content" COLS=130 ROWS=20>{"note":"备注","ct":"测试反馈","lon":"116.46669122857143","lat":"39.94223828571429"}
+	</TEXTAREA>
+	<br/>
+	<input type="button" value="Submit" id="sdbutton" onclick="this.disabled=true;sdbmit();" />
+	</form>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//ibatis.apache.org//DTD Config 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias alias="LaApp" type="com.mapbar.analyzelog.report.entity.LaApp" />
+		<typeAlias alias="VersionVVO" type="com.mapbar.analyzelog.report.entity.VersionVVO" />
+		<typeAlias alias="VersionSVO" type="com.mapbar.analyzelog.report.entity.VersionSVO" />
+		<typeAlias alias="SearchVersionVO" type="com.mapbar.analyzelog.report.entity.SearchVersionVO" />
+		<typeAlias alias="CarrierVO" type="com.mapbar.analyzelog.report.entity.CarrierVO" />
+		<typeAlias alias="DeviceVO" type="com.mapbar.analyzelog.report.entity.DeviceVO" />
+		<typeAlias alias="OSVO" type="com.mapbar.analyzelog.report.entity.OSVO" />
+		<typeAlias alias="ResolutionVO" type="com.mapbar.analyzelog.report.entity.ResolutionVO" />
+		<typeAlias alias="MenuVO" type="com.mapbar.analyzelog.report.entity.MenuVO" />
+		<typeAlias alias="LaFeedBack" type="com.mapbar.analyzelog.report.entity.LaFeedBack" />
+		<typeAlias alias="LaFeedAnswer" type="com.mapbar.analyzelog.report.entity.LaFeedAnswer" />
+		<!-- <typeAlias alias="reptile" type="com.mapbar.analyzelog.report.entity.ChannlReptile" /> -->
+		<typeAlias alias="DeviceSettingVO" type="com.mapbar.analyzelog.report.entity.DeviceSettingVO" />
+		<typeAlias alias="DurationVO" type="com.mapbar.analyzelog.report.entity.DurationVO" />
+	</typeAliases>
+
+	<plugins>
+		<plugin interceptor="com.mapbar.analyzelog.report.OffsetLimitInterceptor">
+			<property name="dialectClass" value="com.mapbar.analyzelog.report.MySQLDialect" />
+		</plugin>
+	</plugins>
+	<mappers>
+	    <mapper resource="mappers/ModuleMapper.xml"/>
+		<mapper resource="mappers/AppStatMapper.xml" />
+		<mapper resource="mappers/VersionMapper.xml" />
+		<mapper resource="mappers/CarrierMapper.xml" />
+		<mapper resource="mappers/DeviceMapper.xml" />
+		<mapper resource="mappers/OSMapper.xml" />
+		<mapper resource="mappers/ResolutionMapper.xml" />
+		<mapper resource="mappers/DurationMapper.xml" />
+	</mappers>
+	
+</configuration>

@@ -1,0 +1,77 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.mapbar.analyzelog</groupId>
+		<artifactId>log-analysis-parent</artifactId>
+		<version>1.0.0</version>
+	</parent>
+
+	<artifactId>log-analysis-core</artifactId>
+	<packaging>jar</packaging>
+	<version>${log-analysis.version}</version>
+	<name>log analysis core</name>
+	
+  <build>
+  	<finalName>log-analysis-core-${log-analysis.version}</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				  <configuration>
+					  <outputDirectory>${project.build.directory}</outputDirectory>
+						<excludes>                                        <!-- jar���в�����Դ�ļ� -->                     
+							<exclude>*.properties</exclude>
+							<exclude>*.xml</exclude>
+							<exclude>*.config</exclude>
+						</excludes>
+					  <useDefaultManifestFile>true</useDefaultManifestFile>
+					  <archive> 
+              <addMavenDescriptor>false</addMavenDescriptor>  <!-- jar���в���pom�ļ� -->
+            </archive> 
+				  </configuration>
+				  <executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>2.2.1</version>
+          <configuration>
+            <descriptors>
+              <descriptor>src/assembly/assembly.xml</descriptor>
+            </descriptors>
+          </configuration>
+          <executions>
+            <execution>
+              <id>make-assembly</id>
+              <phase>package</phase>
+                <goals>
+                  <goal>single</goal>
+                </goals>
+            </execution>
+          </executions>
+      </plugin>
+		</plugins>
+	</build>
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.hbase</groupId>
+			<artifactId>hbase</artifactId>
+			<version>${hbase.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.hadoop</groupId>
+			<artifactId>hadoop-core</artifactId>
+			<version>${hadoop.version}</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+</project>

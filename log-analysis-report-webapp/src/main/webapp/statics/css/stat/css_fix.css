@@ -1,0 +1,34 @@
+/*chrome hack begin*/
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+/* 针对chrome，Firefox下无效 */
+    .b_rightconten table tbody tr td .user_event_code {
+        width: 654px;
+    }
+}
+/*#d_clip_container {*/
+    /*position:relative;*/
+/*}*/
+/*chrome hack end*/
+/*.b_sdk_down {*/
+    /*width: 203px;*/
+    /*overflow: hidden;*/
+/*}*/
+/*.my_clip_button {*/
+    /*background-image: url("../../images/new_ui/b_images/b_sdk_down.png");*/
+    /*background-position: 0 -150px;*/
+    /*border: 0 none;*/
+    /*display: block;*/
+    /*font-size: 12px;*/
+    /*font-weight: 100;*/
+    /*height: 25px;*/
+    /*padding-top: 4px;*/
+    /*text-align: center;*/
+    /*width: 106px;*/
+/*}*/
+
+/*input#fe_text {*/
+    /*height: 24px;*/
+    /*margin-top: 5px;*/
+    /*width: 170px;*/
+    /*border: 1px solid #ccc;*/
+/*}*/

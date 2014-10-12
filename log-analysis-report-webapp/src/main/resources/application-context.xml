@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+
+	<!--main applicationContext file-->
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+		lazy-init="false">
+		<property name="locations">
+			<list>
+				 <value>classpath:database.properties</value> 
+			</list>
+		</property>
+	</bean>
+
+	<!-- Scans the classpath of this application for @Components to deploy as beans -->
+	<context:component-scan base-package="com.mapbar.analyzelog.report" />
+	<!-- Provided by annotation-based configuration  -->
+	<context:annotation-config/>
+
+	<!-- Application Message Bundle -->
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basename" value="/WEB-INF/messages/messages" />
+		<property name="cacheSeconds" value="0" />
+	</bean>
+
+	<!-- The JDBC c3p0 dataSource bean-->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass" value="${db.driver}" />
+		<property name="jdbcUrl" value="${db.url}" />
+		<property name="user" value="${db.username}" />
+		<property name="password" value="${db.password}" />
+		<property name="maxPoolSize" value="1024" />
+		<property name="initialPoolSize" value="20" />
+
+		<property name="breakAfterAcquireFailure" value="true" />
+		<property name="testConnectionOnCheckout" value="true" />
+		<property name="testConnectionOnCheckin" value="true" />
+		<property name="idleConnectionTestPeriod" value="60" />
+		<property name="acquireRetryAttempts" value="10" />
+		<property name="acquireRetryDelay" value="1000" />
+	</bean>
+
+	<!--MyBatis integration with Spring as define sqlSessionFactory  -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:mybatis-configuration.xml"/>
+	</bean>
+
+	<!--
+		Automatically configure the package basePackage all path marked
+		with the @Mapper interface to generate the proxy Dao layer to replace
+		the original implementation of our Dao.
+	-->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+	<property name="basePackage"
+		value="com.mapbar.analyzelog.report.mapper,com.mapbar.analyzelog.report.stat.mapper" />
+	</bean>
+</beans>

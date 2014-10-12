@@ -1,0 +1,250 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.mapbar.analyzelog</groupId>
+		<artifactId>log-analysis-parent</artifactId>
+		<version>1.0.0</version>
+	</parent>
+
+	<artifactId>log-analysis-report-webapp</artifactId>
+	<packaging>war</packaging>
+	<version>${log-analysis.version}</version>
+	<name>log analysis reports webapp</name>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<org.springframework.version>3.0.5.RELEASE</org.springframework.version>
+	</properties>
+	<build>
+		<finalName>log-analysis-report-webapp-${log-analysis.version}</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>2.8</version>
+				<configuration>
+					<useProjectReferences>true</useProjectReferences>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>true</downloadJavadocs>
+					<wtpmanifest>true</wtpmanifest>
+					<wtpversion>2.0</wtpversion>
+					<wtpapplicationxml>true</wtpapplicationxml>
+					<wtpContextName>reports</wtpContextName>
+					<additionalProjectFacets>
+						<jst.web>2.3</jst.web>
+					</additionalProjectFacets>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.2.1</version>
+				<configuration>
+					<descriptors>
+						<descriptor>src/assembly/assembly.xml</descriptor>
+					</descriptors>
+				</configuration>
+				<executions>
+					<execution>
+						<id>make-assembly</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+	<dependencies>
+		<dependency>
+			<groupId>com.mapbar.analyzelog</groupId>
+			<artifactId>log-analysis-core</artifactId>
+			<version>${log-analysis.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.6.12</version>
+		</dependency>
+		<!-- Test dependencies -->
+
+		<!-- Support for testing Spring applications with tools such as JUnit and 
+			TestNG This artifact is generally always defined with a 'test' scope for 
+			the integration testing framework and unit testing stubs -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${org.springframework.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+
+		<!-- SpringFramework dependencies -->
+
+		<!-- Core utilities used by other modules. Define this if you use Spring 
+			Utility APIs (org.springframework.core.*/org.springframework.util.*) -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${org.springframework.version}</version>
+		</dependency>
+		<!-- Expression Language (depends on core) Define this if you use Spring 
+			Expression APIs (org.springframework.expression.*) -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-expression</artifactId>
+			<version>${org.springframework.version}</version>
+		</dependency>
+		<!-- Bean Factory and JavaBeans utilities (depends on core) Define this 
+			if you use Spring Bean APIs (org.springframework.beans.*) -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>${org.springframework.version}</version>
+		</dependency>
+		<!-- Aspect Oriented Programming (AOP) Framework (depends on core, beans) 
+			Define this if you use Spring AOP APIs (org.springframework.aop.*) -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>${org.springframework.version}</version>
+		</dependency>
+		<!-- Application Context (depends on core, expression, aop, beans) This 
+			is the central artifact for Spring's Dependency Injection Container and is 
+			generally always defined -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${org.springframework.version}</version>
+		</dependency>
+		<!-- Various Application Context utilities, including EhCache, JavaMail, 
+			Quartz, and Freemarker integration Define this if you need any of these integrations -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-support</artifactId>
+			<version>2.0.8</version>
+		</dependency>
+		<!-- Transaction Management Abstraction (depends on core, beans, aop, context) 
+			Define this if you use Spring Transactions or DAO Exception Hierarchy (org.springframework.transaction.*/org.springframework.dao.*) -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-dao</artifactId>
+			<version>2.0.8</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${org.springframework.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${org.springframework.version}</version>
+		</dependency>
+		<!-- Spring MVC for Servlet Environments (depends on core, beans, context, 
+			web) Define this if you use Spring MVC with a Servlet Container such as Apache 
+			Tomcat (org.springframework.web.servlet.*) -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${org.springframework.version}</version>
+		</dependency>
+		<!-- Spring MVC for Portlet Environments (depends on core, beans, context, 
+			web) Define this if you use Spring MVC with a Portlet Container (org.springframework.web.portlet.*) -->
+
+		<!-- <dependency> <groupId>org.springframework</groupId> <artifactId>spring-webmvc-portlet</artifactId> 
+			<version>${org.springframework.version}</version> </dependency> -->
+
+
+		<!-- The MyBatis data mapper framework makes it easier to use a relational 
+			database with object-oriented applications. -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>3.0.6</version>
+		</dependency>
+		<!-- MyBatis-Spring helps you integrate your MyBatis code seamlessly with 
+			Spring. Using the classes in this library, Spring will load the necessary 
+			MyBatis factory and session classes for you -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>1.0.2</version>
+		</dependency>
+
+
+		<!--J2EE Dependencies -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+		</dependency>
+		<!-- <dependency> <groupId>taglibs</groupId> <artifactId>standard</artifactId> 
+			<version>1.1.2</version> </dependency> -->
+		<!-- <dependency> <groupId>javax.servlet.jsp</groupId> <artifactId>jsp-api</artifactId> 
+			<version>2.1</version> <scope>provided</scope> </dependency> -->
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+
+		<!-- Database dependencies -->
+		<dependency>
+			<groupId>c3p0</groupId>
+			<artifactId>c3p0</artifactId>
+			<version>0.9.1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.9</version>
+		</dependency>
+		<!-- 定时器依赖包 -->
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+			<version>3.2.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.glassfish.transaction</groupId>
+			<artifactId>jta</artifactId>
+			<version>10.0-b28</version>
+		</dependency>
+	<dependency>
+	  <groupId>com.mapbar.3rd.pensymphony</groupId>
+	  <artifactId>quartz-all</artifactId>
+	  <version>1.6.3</version>
+  </dependency>	
+		<!-- 爬虫依赖包 -->
+		<dependency>
+			<groupId>org.htmlparser</groupId>
+			<artifactId>htmlparser</artifactId>
+			<version>2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.htmlparser</groupId>
+			<artifactId>htmllexer</artifactId>
+			<version>2.1</version>
+		</dependency>
+	<!-- spring json  -->
+		<dependency>  
+    <groupId>org.codehaus.jackson</groupId>  
+    <artifactId>jackson-core-asl</artifactId>  
+    <version>1.8.4</version>  
+</dependency>  
+<dependency>  
+    <groupId>org.codehaus.jackson</groupId>  
+    <artifactId>jackson-mapper-asl</artifactId>  
+    <version>1.8.4</version>  
+</dependency> 
+	
+	</dependencies>
+	
+
+</project>

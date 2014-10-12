@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mapbar.analyzelog.report.mapper.AppStatMapper">
+
+	<resultMap type="LaApp" id="appStatMap">
+		<result column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="total" property="totalUser" />
+		<result column="visitcount" property="launchCount" />
+		<result column="launch_user" property="launchUserCount" />
+		<result column="newuser" property="newUserCount" />
+	</resultMap>
+
+<select id="callSplit">
+call splitString((select appid from la_user_apps where userid=(select id  from la_users where name='${appid}')),",")
+</select>
+
+	<select id="selectAppsForStat" resultMap="appStatMap">
+		select id, name, total,
+		visitcount, newuser, launch_user from la_app a left join (
+		select appid, sum(visit_size) as visitcount, sum(new_imei_size) as newuser
+		from la_section_stat where date=curdate() group by appid
+		) as s on a.id = s.appid left join (
+		select appid, sum(visit_imei_size) as launch_user  from la_section_stat where
+		date = curdate() group by appid
+		) as b on a.id = b.appid left join (
+		select appid, sum(new_imei_size) as total from la_section_stat group by
+		appid
+		) as d on a.id = d.appid
+		<!-- select id, name, total,
+		visitcount, newuser, launch_user from la_app a left join (
+		select appid, sum(visit_size) as visitcount, sum(new_imei_size) as newuser
+		from la_section_stat where date=curdate() group by appid
+		) as s on a.id = s.appid left join (
+		select appid, sum(launch_user_count) as launch_user from la_basic_stat where
+		date = curdate() group by appid
+		) as b on a.id = b.appid left join (
+		select appid, sum(new_imei_size) as total from la_section_stat group by
+		appid
+		) as d on a.id = d.appid; -->
+		<where>
+    		<if test="appid!=null">
+				  id in (select * from tmp_split)
+			</if>
+	</where>
+	</select>
+	
+	<select id="selectAppsForStatYesterDay" resultMap="appStatMap">
+		select id, name, total,
+		visitcount, newuser, launch_user from la_app a left join (
+		select appid, sum(visit_size) as visitcount, sum(new_imei_size) as newuser
+		from la_section_stat where date=DATE_SUB(curdate(), INTERVAL 1 DAY) group by appid
+		) as s on a.id = s.appid left join (
+		select appid, sum(visit_imei_size) as launch_user  from la_section_stat where
+		date = DATE_SUB(curdate(), INTERVAL 1 DAY) group by appid
+		) as b on a.id = b.appid left join (
+		select appid, sum(new_imei_size) as total from la_section_stat group by
+		appid
+		) as d on a.id = d.appid
+		<!-- select id, name, total,
+		visitcount, newuser, launch_user from la_app a left join (
+		select appid, sum(visit_size) as visitcount, sum(new_imei_size) as newuser
+		from la_section_stat where date=curdate() group by appid
+		) as s on a.id = s.appid left join (
+		select appid, sum(launch_user_count) as launch_user from la_basic_stat where
+		date = curdate() group by appid
+		) as b on a.id = b.appid left join (
+		select appid, sum(new_imei_size) as total from la_section_stat group by
+		appid
+		) as d on a.id = d.appid; -->
+		<where>
+    		<if test="appid!=null">
+				  id in (select * from tmp_split)
+			</if>
+	</where>
+	</select>
+	
+	
+	<select id="selectUser" resultMap="appStatMap">
+		<![CDATA[
+        select a.name,b.appid as id,a.id as total from la_users a inner join la_user_apps b on a.id=b.userid and a.flag=0
+   		 ]]>
+    <where>
+    		<if test="name!=null">
+				name='${name}'
+			</if>
+			<if test="pwd!=null">
+				and password='${pwd}'
+			</if>
+	</where>
+	</select>
+	
+	<select id="selectMenus" resultType="MenuVO">
+	select a.* from la_functions a order by id
+		<!-- <![CDATA[
+        select a.* from la_functions a inner join
+( select * from 
+la_function_roles
+where roleid=(
+select roleid from la_user_roles where userid=(
+select id from la_users 
+   		 ]]>
+    <where>
+    		<if test="name!=null">
+				name='${name}'
+			</if>
+	</where>
+	)
+)
+) b on a.id=b.fid -->
+	</select>
+	
+	<select id="selectMenusByname" resultType="MenuVO">
+		<![CDATA[
+        select a.* from la_functions a inner join
+( select * from 
+la_function_roles
+where roleid=(
+select roleid from la_user_roles where userid=(
+select id from la_users 
+   		 ]]>
+    <where>
+    		<if test="name!=null">
+				name='${name}'
+			</if>
+	</where>
+	)
+)
+) b on a.id=b.fid order by id
+	</select>
+	
+	<select id="selectMenuByUid" resultType="MenuVO">
+		<![CDATA[
+        select a.* from la_functions a inner join
+(  select * from 
+la_function_roles a
+where roleid=#{id}) b on a.id=b.fid order by id
+   		 ]]>
+	</select>
+	
+	<select id="selectRoles" resultType="MenuVO">
+		<![CDATA[
+        select a.roleid as id,a.name from la_role a 
+        ]]>
+	</select>
+	
+	<delete id="deleteRF" parameterType="int">
+	delete from la_function_roles where roleid=#{id}
+	</delete>
+	
+	<insert id="insertRF" parameterType="java.util.List">
+	insert into la_function_roles(fid,roleid) values  
+	    <foreach collection="list" item="item" index="index"  
+	        separator=",">
+	        (#{item.fatherid},#{item.id})
+	    </foreach>
+	</insert>
+	
+	<select id="selectUserRS" resultType="MenuVO">
+		<![CDATA[
+        select a.id,a.name,b.roleid as flevel,c.name as fn,flag,appid from la_users a left join la_user_roles b on a.id=b.userid
+left join la_role c on b.roleid=c.roleid left join la_user_apps d on a.id=d.userid
+   		 ]]>
+   		 <where>
+    		<if test="name!=null">
+				a.name='${name}'
+			</if>
+		</where>
+	</select>
+	
+	<select id="selectU" resultType="MenuVO">
+		<![CDATA[
+        select a.id,a.name from la_users a 
+   		 ]]>
+   		 <where>
+    		<if test="name!=null">
+				a.name='${name}'
+			</if>
+		</where>
+	</select>
+	
+	<select id="selectUPwd" resultType="MenuVO">
+        select a.password as name from la_users a where id=#{id}
+	</select>
+	
+	<update id="changepwd" parameterType="MenuVO">
+	update la_users set password='${name}' where id=#{id}
+	</update>
+	
+	<update id="updateAuthor" parameterType="MenuVO">
+	update la_users set name='${name}',flag=${flag} where id=#{id}
+	</update>
+	<update id="updateRole" parameterType="MenuVO">
+	update la_user_roles set roleid=#{flevel} where userid=#{id}
+</update>
+
+<delete id="deleteRole" parameterType="int">
+	delete from la_user_roles where userid=#{id}
+	</delete>
+	
+	
+	<select id="selectRS" resultType="MenuVO">
+		<![CDATA[
+        select roleid as flevel,name from la_role 
+   		 ]]>
+	</select>
+	
+	<insert id="insertRS" parameterType="MenuVO">
+	insert into la_role(name) values  
+	        ('${name}')
+	</insert>
+	
+	<update id="updateRS" parameterType="MenuVO">
+	update la_role set name='${name}' where roleid=#{id}
+</update>
+	
+	<delete id="deleteRS" parameterType="int">
+	delete from la_role where roleid=#{id}
+	</delete>
+	
+	<insert id="insertFS" parameterType="java.util.List">
+	insert into  la_app_events (appid,event) values   
+	    <foreach collection="list" item="item" index="index"  
+	        separator=",">
+	        (#{item.id},'${item.name}')
+	    </foreach>
+	</insert>
+	
+	<insert id="insertU">
+	insert into la_users(name,password) values  
+	        ('${name}','${pwd}')
+	</insert>
+	
+	<insert id="insertR" parameterType="MenuVO">
+	insert into la_user_roles(userid,roleid) values(#{id},#{flevel})
+	</insert>
+	
+	<select id="selectRbyU" parameterType="int" resultType="MenuVO">
+		<![CDATA[
+        select a.roleid,b.appid from la_user_roles a left join la_user_apps b on a.userid=b.userid where a.userid=#{id}
+   		 ]]>
+	</select>
+	
+	<insert id="insertApps" parameterType="MenuVO">
+	insert into la_user_apps(userid,appid) values  
+	        ('${id}','${appid}')
+	</insert>
+	
+	<delete id="deleteApps" parameterType="int">
+	delete from la_user_apps where userid=#{id}
+	</delete>
+	
+	
+	<select id="selectRepeatForApp" resultMap="appStatMap">
+		select sum(repeat_id) as launchUserCount from la_repeat_stat where date=(SELECT MAX(date) as date from la_repeat_stat)
+	</select>
+</mapper>

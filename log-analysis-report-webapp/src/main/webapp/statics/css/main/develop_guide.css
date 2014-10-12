@@ -1,0 +1,149 @@
+
+\@charset
+
+"utf-8"
+;
+/* CSS Document */
+
+.deveguide_info {
+	height: 180px;
+	width: 705px;
+}
+
+.deveguide_info .fr {
+
+	font-size: 20px;
+	font-weight: 100;
+	margin-right: 0;
+	padding: 30px 0 0 10px;
+	width: 430px;
+}
+
+.deveguide_info .fr .p1, .deveguide_info .fr .p2 {
+	font-size: 20px;
+
+}
+
+.deveguide_info .fr .p3 {
+	/*font-size: 26px;*/
+
+}
+
+.developer_right_content .deveguide_guide {
+	background-image: url(../../images/main/deveguide_info_step_n.jpg);
+	height: 90px;
+	background-repeat: no-repeat;
+	background-position: 20px 5px;
+	/*margin-top: 35px;*/
+}
+
+.deveguide_guide_intro {
+	font-size: 14px;
+	line-height: 150%;
+	margin-bottom: 24px;
+}
+
+.deveguide_guide_intro a {
+	text-decoration: none;
+	color: #2C6EC7;
+}
+
+#center .deveguide_guide_intro a:hover,
+#center .slider-wrap a:hover {
+	text-decoration: underline;
+}
+
+.deveguide_guide_intro .first_setp {
+	width: 160px;
+	margin: 0 67px 0 32px;
+}
+
+.deveguide_guide_intro .second_setp {
+	margin-right: 68px;
+	width: 160px;
+}
+
+.deveguide_guide_intro .third_step {
+	width: 135px;
+	margin-left: 34px;
+	margin-left: 34px;
+}
+
+/*.deveguide_document {
+	width: 694px;
+	margin: 10px auto;
+}
+
+.deveguide_downsdk {
+	width: 694px;
+	margin: 10px auto;
+}
+
+div.deveguide_document_con_top {
+	height: 50px;
+	background-image: url("../../images/main/developer_guide_bg.jpg");
+	background-repeat: no-repeat;
+}
+
+.deveguide_document div.deveguide_document_con_top h3.title {
+	padding: 13px 0 0 61px;
+	font-size: 16px;
+
+	font-weight: normal;
+
+
+
+	 background-image: url("../../images/main/b_apps_title_bg.png");
+    background-position: 33px -65px;
+    background-repeat: no-repeat;
+    
+
+
+}
+.deveguide_document a ,.deveguide_downsdk a{
+	color: #2C6EC7;
+}
+.deveguide_downsdk div.deveguide_document_con_top h3.title {
+	padding: 13px 0 0 61px;
+	font-size: 16px;
+
+	font-weight: normal;
+	background-image: url("../../images/main/download.png");
+	background-repeat: no-repeat;
+	background-position: 36px 17px;
+}
+
+.deveguide_document_con_center {
+	background-color: #f0f0f0;
+	background-image: url("../../images/main/developer_guide_center_bg.jpg");
+	background-repeat: repeat-x;
+}
+
+.deveguide_document_con_center ul li {
+	line-height: 180%;
+	font-size: 14px;
+}
+
+.deveguide_document_con_bottom {
+	height: 30px;
+	background-image: url("../../images/main/developer_guide_bg.jpg");
+	background-repeat: no-repeat;
+	background-position: 0 bottom;
+	text-align: right;
+	font-size: 12px;
+	padding-right: 10px;
+}
+
+.deveguide_document_con_bottom a {
+	font-size: 12px;
+	color: #2C6EC7;
+}
+
+.deveguide_document_con_bottom a:hover {
+	font-size: 12px;
+	color: #2C6EC7;
+	text-decoration: underline;
+}*/
+.sr_splendid_review_table h3.sr_re_title {
+	font-size: 12px;
+}

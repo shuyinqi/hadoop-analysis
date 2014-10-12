@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Class-Path: aopalliance-1.0.jar aspectjweaver-1.6.12.jar auto-depends-
+ 0.3.31.jar c3p0-0.9.1.2.jar common-util-10.0-b28.jar commons-beanutil
+ s-1.7.0.jar commons-collections-3.2.1.jar commons-lang-2.6.jar common
+ s-logging-1.0.3.jar config-0.3.31.jar config-api-10.0-b28.jar glassfi
+ sh-api-10.0.422.jar hk2-0.3.31.jar hk2-core-0.3.31.jar htmllexer-2.1.
+ jar htmlparser-2.1.jar jackson-core-asl-1.8.4.jar jackson-mapper-asl-
+ 1.8.4.jar javax.persistence-10.0-b28.jar javax.resource-10.0-b28.jar 
+ javax.transaction-10.0-b28.jar javax.xml.stream-10.0-b28.jar jstl-1.2
+ .jar jta-10.0-b28.jar log-analysis-core.jar log4j-1.2.16.jar mybatis-
+ 3.0.6.jar mybatis-spring-1.0.2.jar mysql-connector-java-5.1.9.jar qua
+ rtz-all-1.6.3.jar servlet-api-2.5.jar slf4j-api-1.6.4.jar slf4j-log4j
+ 12-1.6.4.jar spring-aop-3.0.5.RELEASE.jar spring-asm-3.0.5.RELEASE.ja
+ r spring-beans-3.0.5.RELEASE.jar spring-context-3.0.5.RELEASE.jar spr
+ ing-context-support-3.0.5.RELEASE.jar spring-core-3.0.5.RELEASE.jar s
+ pring-dao-2.0.8.jar spring-expression-3.0.5.RELEASE.jar spring-jdbc-3
+ .0.6.RELEASE.jar spring-orm-3.0.5.RELEASE.jar spring-support-2.0.8.ja
+ r spring-tx-3.0.6.RELEASE.jar spring-web-3.0.5.RELEASE.jar spring-web
+ mvc-3.0.5.RELEASE.jar tiger-types-osgi-0.3.31.jar transaction-interna
+ l-api-10.0-b28.jar
+

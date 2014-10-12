@@ -1,0 +1,345 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mapbar.analyzelog.report.mapper.DeviceMapper">
+	<cache eviction="FIFO" flushInterval="60000" size="512" readOnly="true"/>
+	<cache type="com.mapbar.analyzelog.report.entity.DeviceVO"/>
+	
+	<select id="select" flushCache="false" fetchSize="256" useCache="true" timeout="20000" statementType="PREPARED"
+		resultType="DeviceVO">
+	<![CDATA[
+        select device,newcount,launchcount from (select CONCAT(brand,'/',device) as device,sum(new_user_count) as newcount,sum(launch_user_count) as launchcount FROM la_device_stat 
+    ]]>
+    <where>
+			<if test="appid!=null">
+				appid=${appid}
+			</if>
+			<if test="queryname!=null">
+				and (device like '%${queryname}%' or brand like '%${queryname}%')
+			</if>
+	</where>
+    group by device )a order by newcount desc
+	</select>
+	
+	<select id="selectcount" flushCache="false" fetchSize="256" useCache="true" timeout="20000" statementType="PREPARED"
+		resultType="DeviceVO">
+	<![CDATA[
+        select 
+sum(new_user_count) as newcount,sum(launch_user_count) as launchcount 
+FROM la_device_stat 
+    ]]>
+    <where>
+			<if test="appid!=null">
+				appid=${appid}
+			</if>
+			<if test="date1!=null">
+				and date >='${date1}'
+			</if>
+			<if test="date2!=null">
+				AND date &lt;='${date2}'
+			</if>
+	</where>
+	</select>
+	
+	<select id="selectmx" flushCache="false" fetchSize="256" useCache="true" timeout="20000" statementType="PREPARED"
+		resultType="DeviceVO">
+	<![CDATA[
+        select * from (select device,newcount,launchcount,date from (select CONCAT('${brand}','/',device) as device,
+sum(new_user_count) as newcount,sum(launch_user_count) as launchcount,date FROM 
+(
+select ds.brand,ds.device,ds.date,
+ sum(new_user_count) as new_user_count,sum(launch_user_count) as launch_user_count FROM la_device_stat ds LEFT JOIN la_device_setting dt on ds.device=dt.device 
+    ]]>
+    <where>
+			<if test="appid!=null">
+				ds.appid=${appid}
+			</if>
+			<if test="device!=null">
+				and ds.device='${device}'
+			</if>
+			<if test="brand!=null">
+				and (ds.brand='${brand}' or dt.fn='${brand}' )
+			</if>
+			<if test="date1!=null">
+				and ds.date >='${date1}'
+			</if>
+			<if test="date2!=null">
+				AND ds.date &lt;='${date2}'
+			</if>
+	</where>
+    group by ds.device,date )a group by date)a
+    order by date desc ) st where st.newcount!=0
+	</select>
+	
+	<update id="mx1_delete">
+		delete from tmp_ds
+	</update>
+	
+	<insert id="mx1_getSetting">
+		insert into tmp_ds(id,brand,device,fn)
+		select * from la_device_setting b where  b.fn!=''
+	</insert>
+	
+	<select id="selectmx1" flushCache="false" fetchSize="2560" useCache="true" timeout="2000000" statementType="PREPARED"
+		resultType="DeviceVO">
+	<![CDATA[
+        select brand as device,
+sum(a.new_user_count) as newcount,sum(a.launch_user_count) as launchcount 
+from 
+(
+select brand,sum(new_user_count)as new_user_count,sum(launch_user_count) as launch_user_count from (
+select a.brand,a.new_user_count,a.launch_user_count 
+from (
+select *  
+FROM la_device_stat a 
+    ]]>
+    <where>
+			<if test="appid!=null">
+				a.appid=${appid}
+			</if>
+			<if test="device!=null">
+				and a.device='${device}'
+			</if>
+			<if test="brand!=null">
+				and a.brand='${brand}'
+			</if>
+			<if test="date1!=null">
+				and a.date >='${date1}'
+			</if>
+			<if test="date2!=null">
+				AND a.date &lt;='${date2}'
+			</if>
+	</where>
+    ) a
+where not exists(select 1 from  tmp_ds b where a.brand=b.brand and a.device=b.device) 
+) b  group by brand
+union all
+select * from (
+select case when b.fn is not null then b.fn else a.brand end as brand,a.new_user_count,a.launch_user_count 
+from (
+select *  
+FROM la_device_stat a 
+<where>
+			<if test="appid!=null">
+				a.appid=${appid}
+			</if>
+			<if test="device!=null">
+				and a.device='${device}'
+			</if>
+			<if test="brand!=null">
+				and a.brand='${brand}'
+			</if>
+			<if test="date1!=null">
+				and a.date >='${date1}'
+			</if>
+			<if test="date2!=null">
+				AND a.date &lt;='${date2}'
+			</if>
+	</where>
+) a
+inner join tmp_ds b on STRCMP(a.brand,b.brand)=0 and STRCMP(a.device,b.device)=0 
+) b 
+)a
+ group by brand  
+    order by launchcount desc
+    
+	</select>
+	
+	<select id="selectmx3" flushCache="false" fetchSize="2560" useCache="true" timeout="200000" statementType="PREPARED"
+		resultType="DeviceVO">
+	<![CDATA[
+        select brand as device,
+sum(a.new_user_count) as launchcount
+from 
+(
+select brand,sum(new_user_count)as new_user_count,sum(launch_user_count) as launch_user_count from (
+select a.brand,a.new_user_count,a.launch_user_count 
+from (
+select *  
+FROM la_device_stat a 
+    ]]>
+    <where>
+			<if test="appid!=null">
+				a.appid=${appid}
+			</if>
+			<if test="device!=null">
+				and a.device='${device}'
+			</if>
+			<if test="brand!=null">
+				and a.brand='${brand}'
+			</if>
+			<if test="date1!=null">
+				and a.date >='${date1}'
+			</if>
+			<if test="date2!=null">
+				AND a.date &lt;='${date2}'
+			</if>
+	</where>
+    ) a
+where not exists(select 1 from  tmp_ds b where a.brand=b.brand and a.device=b.device) 
+) b  group by brand
+union all
+select * from (
+select case when b.fn is not null then b.fn else a.brand end as brand,a.new_user_count,a.launch_user_count 
+from (
+select *  
+FROM la_device_stat a 
+<where>
+			<if test="appid!=null">
+				a.appid=${appid}
+			</if>
+			<if test="date1!=null">
+				and a.date >='${date1}'
+			</if>
+			<if test="date2!=null">
+				AND a.date &lt;='${date2}'
+			</if>
+	</where>
+) a
+inner join tmp_ds b on STRCMP(a.brand,b.brand)=0 and STRCMP(a.device,b.device)=0 
+) b 
+<where>
+			<if test="brand!=null">
+				brand='${brand}'
+			</if>
+	</where>
+)a
+ group by brand  
+    order by launchcount desc 
+	</select>
+	
+	<select id="selectmx2" flushCache="false" fetchSize="256" useCache="true" timeout="20000" statementType="PREPARED"
+		resultType="DeviceVO">
+		<![CDATA[
+		select CONCAT(brand,'/',device) as device,newcount,launchcount  from (
+ select a.brand,a.device,
+sum(new_user_count) as newcount,sum(launch_user_count) as launchcount FROM 
+(
+select brand,device,sum(new_user_count)as new_user_count,sum(launch_user_count) as launch_user_count from (
+select a.brand,a.device,a.new_user_count,a.launch_user_count 
+from (
+select *  
+FROM la_device_stat a 
+ ]]>
+	<where>
+			<if test="appid!=null">
+				appid=${appid}
+			</if>
+			<if test="brand!=null">
+				and a.brand='${brand}'
+			</if>
+			<if test="date1!=null">
+				and date >='${date1}'
+			</if>
+			<if test="date2!=null">
+				AND date &lt;='${date2}'
+			</if>
+	</where> 
+) a where not exists(select 1 from  tmp_ds b where a.brand=b.brand and a.device=b.device) 
+) b  group by brand,device
+union all
+select fn as brand,device,new_user_count,launch_user_count from (
+select a.brand,b.fn,a.device,a.new_user_count,a.launch_user_count 
+from (
+select *  
+FROM la_device_stat a 
+<where>
+			<if test="appid!=null">
+				appid=${appid}
+			</if>
+			<if test="date1!=null">
+				and date >='${date1}'
+			</if>
+			<if test="date2!=null">
+				AND date &lt;='${date2}'
+			</if>
+	</where>
+) a
+inner join tmp_ds b on STRCMP(a.brand,b.brand)=0 and STRCMP(a.device,b.device)=0 
+) b 
+<where>
+        <choose>
+           <when test="brand=='UNKNOWN'">
+           		brand='${brand}' and fn='${brand}'
+           </when>
+           <when test="brand=='unknown'">
+           		brand='${brand}' and fn='${brand}'
+           </when>
+           <when test="brand=='alps'">
+           		brand='${brand}' and fn='${brand}'
+           </when>
+           <otherwise>
+           brand='${brand}' or fn='${brand}'
+           </otherwise>
+        </choose>
+	</where> 
+) a 
+group by a.device,brand
+
+)a
+	</select>
+	
+	<select id="selectnews" flushCache="false" fetchSize="256" useCache="true" timeout="20000" statementType="PREPARED"
+		resultType="DeviceVO">
+	<![CDATA[
+        select device,newcount,launchcount from (select CONCAT(brand,'/',device) as device,sum(new_user_count) as newcount,sum(launch_user_count) as launchcount FROM la_device_stat 
+    ]]>
+    <where>
+			<if test="appid!=null">
+				appid=${appid}
+			</if>
+	</where>
+    group by device )a order by newcount desc limit 10
+	</select>
+
+	<select id="selectByDay" flushCache="false" fetchSize="256" useCache="true" timeout="20000" statementType="PREPARED"
+		resultType="DeviceVO">
+	<![CDATA[
+        select device,newcount,launchcount from (
+        select case 
+                 WHEN b.brand = a.brand
+                 THEN CONCAT(b.fn,'/',a.device)
+               ELSE
+                 CONCAT(a.brand,'/',a.device)
+               end
+        as device,
+        sum(new_user_count) as newcount,sum(launch_user_count) as launchcount FROM la_device_stat a left join la_device_setting b on a.device=b.device and a.brand=b.brand 
+    ]]>
+		<where>
+			<if test="date1!=null">
+				a.date >='${date1}'
+			</if>
+			<if test="date2!=null">
+				AND a.date &lt;='${date2}'
+			</if>
+			<if test="appid!=null">
+				AND a.appid=${appid}
+			</if>
+			<if test="queryname!=null">
+				and (a.device like '%${queryname}%' or a.brand like '%${queryname}%')
+			</if>
+		</where>
+		 group by a.device,a.brand )a order by newcount desc
+	</select>
+
+	<select id="selectNewsByDay" flushCache="false" fetchSize="256" useCache="true" timeout="20000" statementType="PREPARED"
+		resultType="DeviceVO">
+	<![CDATA[
+        select device,newcount,launchcount from (select CONCAT(brand,'/',device) as device,sum(new_user_count) as newcount,sum(launch_user_count) as launchcount FROM la_device_stat   
+    ]]>
+		<where>
+			<if test="date1!=null">
+				date >='${date1}'
+			</if>
+			<if test="date2!=null">
+				AND date &lt;='${date2}'
+			</if>
+			<if test="appid!=null">
+				AND appid=${appid}
+			</if>
+		</where>
+		 group by device )a order by newcount desc limit 10
+	</select>
+</mapper>

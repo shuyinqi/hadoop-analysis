@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mapbar.analyzelog.report.mapper.DurationMapper">
+
+<select id="select" flushCache="false" fetchSize="256" useCache="true" timeout="20000" statementType="PREPARED"
+		resultType="DurationVO">
+SELECT segment, sum(visit_count) as count FROM  la_duration_stat  where appid=${appid} group by segment order by segment
+	</select>
+
+<select id="selectByDay" flushCache="false" fetchSize="256" useCache="true" timeout="20000" statementType="PREPARED"
+		resultType="DurationVO">
+<![CDATA[
+	SELECT segment, sum(visit_count) as count FROM ${tableName}
+	    ]]>
+	    <where>
+	     <if test="appid!=null">
+	     <![CDATA[
+				appid=${appid} and date>='${date1}' and date<='${date2}'
+				]]>
+			</if>
+			<if test="version!=null">
+			 <if test="version!='all'">
+				and version='${version}'
+			</if>
+			</if>
+			<if test="channelType!=null">
+			<if test="channelType!='all'">
+				and channel_type='${channelType}'
+			</if>
+			</if>
+			<if test="channelName!=null">
+			<if test="channelName!='all'">
+				and channel_name='${channelName}'
+			</if>
+			</if>
+	  		group by segment order by segment
+	    </where>
+	    </select>
+	    
+<select id="selectDurationByChannel" flushCache="false" fetchSize="256" useCache="true" timeout="20000" statementType="PREPARED"
+		resultType="String">
+<![CDATA[
+	SELECT DISTINCT channel_name FROM la_duration_time_stat where appid=${appid} order by channel_name
+	    ]]>
+	    </select>
+
+<select id="selectDurationByVersion" flushCache="false" fetchSize="256" useCache="true" timeout="20000" statementType="PREPARED"
+		resultType="String">
+<![CDATA[
+SELECT DISTINCT version FROM la_duration_time_stat where appid=${appid} order by version
+	    ]]>
+	    </select>
+	    
+<select id="selectDurationCondition" flushCache="false" fetchSize="256" useCache="true" timeout="20000" statementType="PREPARED"
+		resultType="String">
+<![CDATA[
+	SELECT DISTINCT channel_name FROM la_duration_time_stat
+	    ]]>
+	    <where>
+	    <if test="appid!=null">
+				appid=${appid}
+			</if>
+			<if test="version!=null">
+			 <if test="version!='all'">
+				and version='${version}'
+			</if>
+			</if>
+			<if test="channelType!=null">
+			<if test="channelType!='all'">
+				and channel_type='${channelType}'
+			</if>
+	    </if>
+	    order by channel_name
+	    </where>
+	    </select>
+</mapper>

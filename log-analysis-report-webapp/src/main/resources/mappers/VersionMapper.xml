@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mapbar.analyzelog.report.mapper.VersionMapper">
+
+	<select id="selectVByDay" parameterType="SearchVersionVO"
+		flushCache="false" fetchSize="256" resultType="VersionVVO">
+	<![CDATA[
+        select version,sum(new_user_count) as news,date from la_version_stat
+    ]]>
+		<where>
+			<if test="appid_long!=null">
+				appid=#{appid_long}
+			</if>
+			<if test="fromdate!=null">
+				AND date >='${fromdate}'
+			</if>
+			<if test="todate!=null">
+				AND date &lt;='${todate}'
+			</if>
+		</where>
+		group by version,date
+	</select>
+
+	<select id="selectVByDay2" parameterType="SearchVersionVO"
+		flushCache="false" fetchSize="256" resultType="VersionVVO">
+	<![CDATA[
+        select date from la_version_stat 
+    ]]>
+		<where>
+			<if test="appid_long!=null">
+				appid=#{appid_long}
+			</if>
+			<if test="fromdate!=null">
+				AND date >='${fromdate}'
+			</if>
+			<if test="todate!=null">
+				AND date &lt;='${todate}'
+			</if>
+		</where>
+		group by date
+	</select>
+
+	<select id="selectAll" parameterType="int" resultType="VersionSVO">
+	<![CDATA[
+        select a.version,sum(days1)as tds,sum(news)as news,sum(ups)as ups,sum(days2) as yds,sum(ysups) as ysups,
+        counts from (select a.version,case when a.date=date_sub(curdate(),interval 1 day)  
+        then a.news  end  as days1,case when a.date=curdate()  then a.news  end  as news,
+        case when a.date=date_sub(curdate(),interval 1 day)  
+        then a.ups  end  as ysups,
+        case when a.date=curdate()  then a.ups  end  as ups,
+        case when a.date=date_sub(curdate(),interval 1 day)  then a.launchs  end  as days2  , 
+        (select sum(new_user_count+upgrade_user_count) as counts  from la_version_stat b 
+        where b.version=a.version group by version ) as counts from  
+        (select version,sum(new_user_count) as news,sum(launch_user_count) as launchs,
+        sum(upgrade_user_count) as ups,date from la_version_stat 
+    ]]>
+			<where>
+			<if test="appid!=null">
+				appid=#{appid}
+			</if>
+			<if test="fromdate!=null">
+				AND date >='${fromdate}'
+			</if>
+			<if test="todate!=null">
+				AND date &lt;='${todate}'
+			</if>
+			<if test="version!=null and version!=''">
+				AND version='${version}'
+			</if>
+			<if test="queryname!=null and queryname!=''">
+				AND version like '${queryname}%'
+			</if>
+			</where>
+		and date BETWEEN date_sub(curdate(),interval 1
+		day) AND curdate()
+		group by version,date )a)a group by a.version order by counts desc
+	</select>
+
+	<select id="selectVAll" parameterType="int" resultType="VersionSVO">
+	select a.version,b.counts as news from (
+	select version,sum(new_user_count+upgrade_user_count) as counts from la_version_stat
+	<where>
+	<if test="appid!=null">
+				appid=#{appid}
+			</if>
+			<if test="todate!=null">
+				AND date &lt;='${todate}'
+			</if>
+	  </where>
+	   group by version ) b INNER JOIN la_version_stat a on a.version=b.version
+		<where>
+			<if test="appid!=null">
+				a.appid=#{appid}
+			</if>
+			<if test="fromdate!=null">
+				AND a.date >='${fromdate}'
+			</if>
+			<if test="todate!=null">
+				AND a.date &lt;='${todate}'
+			</if>
+			<if test="version!=null and version!=''">
+				AND a.version='${version}'
+			</if>
+			<if test="queryname!=null and queryname!=''">
+				AND a.version like '${queryname}%'
+			</if>
+		</where>
+		group by a.version
+	</select>
+
+	<select id="selectVersion" parameterType="int" resultType="VersionVVO">
+	<![CDATA[
+        select distinct(version) 
+		from la_version_stat 
+    ]]>
+    <where>
+			<if test="appid!=null">
+				appid=#{appid}
+			</if>
+			<if test="fromdate!=null">
+				AND date >='${fromdate}'
+			</if>
+			<if test="todate!=null">
+				AND date &lt;='${todate}'
+			</if>
+	</where>
+	</select>
+
+	<select id="selectVByV" resultType="VersionVVO">
+	<![CDATA[
+        select version,news,launchs,date from(
+		select version,sum(new_user_count) as news,sum(launch_user_count) as launchs,date 
+		from la_version_stat  
+    ]]>
+    <where>
+			<if test="appid!=null">
+				appid=#{appid}
+			</if>
+			<if test="fromdate!=null">
+				AND date >='${fromdate}'
+			</if>
+			<if test="todate!=null">
+				AND date &lt;='${todate}'
+			</if>
+			<if test="version!=null and version!=''">
+				AND version='${version}'
+			</if>
+	</where>
+		group by version,date 
+		) a    order by date
+	</select>
+	
+	<select id="selectVByVD" resultType="VersionVVO">
+	<![CDATA[
+        select version,news,launchs,ups,date from(
+		select version,sum(new_user_count) as news,sum(launch_user_count) as launchs,sum(upgrade_user_count) as ups,date 
+		from la_version_stat 
+    ]]>
+    <where>
+			<if test="appid!=null">
+				appid=#{appid}
+			</if>
+			<if test="fromdate!=null">
+				AND date >='${fromdate}'
+			</if>
+			<if test="todate!=null">
+				AND date &lt;='${todate}'
+			</if>
+	</where>
+    group by version,date 
+		) a 
+		
+	 <where>
+			<if test="version!=null">
+				version='${version}'
+			</if>
+	 </where>
+	 order by date desc
+	</select>
+
+</mapper>

@@ -1,0 +1,118 @@
+/*-------------------------------
+*	Default dropdown styles
+--------------------------------*/
+
+.tzSelect{
+	
+	/* This is the container of the new select element */
+	
+	height:34px;
+	display:inline-block;
+	min-width:206px;
+	position:relative;
+	margin:0px;
+	
+	/* Preloading the background image for the dropdown */
+	background:url("dropdown_slice.png") no-repeat -99999px;
+}
+
+.tzSelect .selectBox{
+	position:absolute;
+
+	height: 25px;
+	width:196px;
+	
+	/* Font settings */
+	
+	font:14px;
+	text-align:left;
+	padding:9px 0 0 10px;
+	color:#000;
+	font-weight: bold;
+
+	/* Using CSS3 multiple backgrounds and a fallback */
+	
+	background:url('dropdown_select.png');
+	background-repeat: no-repeat;
+
+}
+
+.tzSelect .selectBox:hover,
+.tzSelect .selectBox.expanded{
+	background-position:0 -35px;
+	color:#000;
+	cursor:pointer;
+}
+
+.tzSelect .dropDown{
+	position:absolute;
+	top:36px;
+	left:0;
+	width:204px;
+	border:1px solid #ccc;
+	list-style:none;
+	z-index:1000;
+	background-color: #FFF;
+}
+
+.tzSelect .dropDown.f {
+	overflow-y:auto;
+	height:580px;
+}
+
+.tzSelect li{
+	background-color:#fff;
+	cursor:pointer;
+	padding:6px;
+	text-align:left;
+}
+
+.tzSelect li:hover{
+	background-color:#e6f1ff;
+}
+
+
+/*-----------------------------------------------------
+*	Additional styles for the apple product dropdown
+------------------------------------------------------*/
+
+
+.tzSelect .hasDetails{
+	border-width:0 1px 1px;
+}
+
+.tzSelect .hasDetails li{
+	height:85px;
+	position:relative;
+	padding:0;
+	text-align:left;
+	
+	/* Again, using CSS3 multiple backgrounds with a fallback */
+	
+	background:url('img/dropdown_slice.png') repeat-x #222;
+	background-image:url('dropdown_slice.png'),url('dropdown_slice.png'),url('dropdown_slice.png');
+	background-position: 50% -171px, 0 -85px, 0 0;
+	background-repeat: no-repeat, no-repeat, repeat-x;
+}
+
+.tzSelect .hasDetails li:hover{
+	background-position: 50% -256px, 0 -85px, 0 0;
+}
+
+.tzSelect .hasDetails li span{
+	left:88px;
+	position:absolute;
+	top:27px;
+}
+
+.tzSelect .hasDetails li i{
+	color:#999999;
+	display:block;
+	font-size:12px;
+}
+
+.tzSelect .hasDetails li img{
+	left:9px;
+	position:absolute;
+	top:13px;
+}

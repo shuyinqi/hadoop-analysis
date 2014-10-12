@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+Class-Path: activation-1.1.jar ant-1.6.5.jar asm-3.1.jar avro-1.3.3.ja
+ r c3p0-0.9.1.2.jar commons-beanutils-1.7.0.jar commons-beanutils-core
+ -1.8.0.jar commons-cli-1.2.jar commons-codec-1.4.jar commons-collecti
+ ons-3.2.1.jar commons-configuration-1.6.jar commons-digester-1.8.jar 
+ commons-el-1.0.jar commons-httpclient-3.0.1.jar commons-lang-2.6.jar 
+ commons-logging-1.0.3.jar commons-math-2.1.jar commons-net-1.4.1.jar 
+ core-3.1.1.jar ezmorph-1.0.6.jar gmbal-api-only-3.0.0-b023.jar grizzl
+ y-framework-2.1.2.jar grizzly-http-2.1.2.jar grizzly-http-server-2.1.
+ 2.jar grizzly-rcm-2.1.2.jar guava-r06.jar hadoop-core-0.20.205.0.jar 
+ hbase-0.90.4.jar hsqldb-1.8.0.10.jar jackson-core-asl-1.5.5.jar jacks
+ on-jaxrs-1.5.5.jar jackson-mapper-asl-1.4.2.jar jackson-xc-1.5.5.jar 
+ jasper-compiler-5.5.12.jar jasper-runtime-5.5.12.jar jaxb-api-2.1.jar
+  jaxb-impl-2.1.12.jar jersey-core-1.11.jar jersey-grizzly2-1.11.jar j
+ ersey-json-1.4.jar jersey-server-1.11.jar jets3t-0.7.1.jar jettison-1
+ .1.jar jetty-6.1.26.jar jetty-util-6.1.26.jar jruby-complete-1.6.0.ja
+ r json-lib-2.4-jdk15.jar jsp-2.1-6.1.14.jar jsp-api-2.1-6.1.14.jar js
+ r311-api-1.1.1.jar kfs-0.3.jar log-analysis-core.jar log4j-1.2.16.jar
+  management-api-3.0.0-b012.jar mysql-connector-java-5.1.13.jar oro-2.
+ 0.8.jar protobuf-java-2.3.0.jar servlet-api-2.5-20081211.jar servlet-
+ api-2.5-6.1.14.jar slf4j-api-1.6.4.jar slf4j-log4j12-1.6.4.jar stax-a
+ pi-1.0.1.jar thrift-0.2.0.jar xmlenc-0.52.jar zookeeper-3.3.2.jar
+

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mapbar.analyzelog.report.mapper.ModuleMapper">
+
+	<select id="getLaFeedBack" flushCache="false" fetchSize="256" resultType="LaFeedBack">
+	<![CDATA[
+        select id,appid,userid,addtime,lasttime,flag,os,phone,lat,lon,appv,ct,qid,wid,note,collect,isDel,device,sex,age  
+         from la_app_feedbacks where isDel=0 and addtime between #{fromDate} and #{toDate} and appid=#{appid}
+    ]]>
+			<if test="collect!=null">
+			  and collect=${collect}
+			</if>
+		order by addtime desc
+	</select>
+	
+	<select id="getLaFeedAnswer" flushCache="false" fetchSize="256" resultType="LaFeedAnswer">
+	<![CDATA[
+        select * from la_app_feedanswer where isDel=0  and appid=#{appid}
+    ]]>
+	</select>
+    <update id="changeCollectStat">
+	update la_app_feedbacks set collect='${isCollect}' where id=#{fid}
+	</update>
+
+    <update id="changeFlagStat">
+	   update la_app_feedbacks set flag=${flag} where id=#{fid}
+	</update>
+	
+     <update id="stopFeedBack">
+	update la_app_feedbacks set isDel=1 where id=#{fid}
+	</update>
+   
+   
+   <insert id="anwserFeedBack" useGeneratedKeys="true" parameterType="LaFeedAnswer">
+	insert into la_app_feedanswer(userid,qid,wid,answer,lasttime,isDel,fid,appid,answerusername) 
+	 values(#{userid},#{qid},#{wid},#{answer},#{lasttime},#{isDel},#{fid},#{appid},#{answerusername})
+	</insert>
+</mapper>

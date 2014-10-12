@@ -1,0 +1,268 @@
+/* autocomplete begin */
+.autocomplete-w1 { background:url(/images/shadow.png) no-repeat bottom right; position:absolute; top:0px; left:0px; margin:8px 0 0 6px; /* IE6 fix: */ _background:none; _margin:0; }
+.autocomplete { border:1px solid #999; background:#FFF; cursor:default; text-align:left; max-height:350px; overflow:auto; margin:-6px 6px 6px -6px; /* IE6 specific: */ _height:350px;  _margin:0; _overflow-x:hidden; }
+.autocomplete .selected { background:#F0F0F0; }
+.autocomplete div { padding:2px 5px; white-space:nowrap; }
+.autocomplete strong { font-weight:normal; color:#3399FF; float: none; margin:0}
+/* autocomplete end */
+/* nyroModal begin */
+.nyroModalBg {
+    position: fixed;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: #000;
+    opacity: 0.7;
+    z-index: 2;
+}
+.nmReposition {
+    position: absolute;
+}
+.nyroModalCloseButton {
+    top: -13px;
+    right: -13px;
+    width: 12px;
+    height: 12px;
+    text-indent: -9999em;
+    background: url(/images/close.gif);
+    z-index: 3;
+}
+.nyroModalTitle {
+    top: -26px;
+    left: 0;
+    margin: 0;
+    font-size: 1.2em;
+    color: #ddd;
+    z-index: 3;
+}
+.nyroModalCont {
+    position: absolute;
+    border: 4px solid #777;
+    margin: 25px;
+    background: #fff;
+    z-index: 3;
+}
+.nyroModalCont iframe {
+    width: 600px;
+}
+.nyroModalError {
+    border: 4px solid red;
+    color: red;
+    width: 250px;
+    height: 250px;
+}
+.nyroModalError div {
+    min-width: 0;
+    min-height: 0;
+    padding: 10px;
+}
+.nyroModalLink, .nyroModalDom, .nyroModalForm, .nyroModalFormFile {
+    position: relative;
+    padding: 10px;
+    min-height: 250px;
+    min-width: 250px;
+    max-width: 1000px;
+}
+
+
+.nyroModalImage, .nyroModalSwf, .nyroModalIframe, .nyroModalIframeForm {
+    position: relative;
+    overflow: hidden;
+}
+.nyroModalHidden {
+    left: -9999em;
+    top: -9999em;
+}
+.nyroModalLoad {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: #fff url(/images/ajaxLoader.gif) no-repeat center;
+    padding: 0;
+}
+.nyroModalPrev, .nyroModalNext {
+    outline: none;
+    position: absolute;
+    top: 0;
+    height: 60%;
+    width: 150px;
+    min-height: 50px;
+    max-height: 300px;
+    cursor: pointer;
+    text-indent: -9999em;
+    background: transparent url('data:image/gif;base64,AAAA') left 20% no-repeat;
+}
+.nyroModalImage .nyroModalPrev, .nyroModalImage .nyroModalNext {
+    height: 40%;
+    width: 40%;
+    max-height: none;
+}
+.nyroModalPrev {
+    left: 0;
+}
+.nyroModalPrev:hover {
+    background-image: url(/images/prev.gif);
+}
+.nyroModalNext {
+    right: 0;
+    background-position: right 20%;
+}
+.nyroModalNext:hover {
+    background-position: right 20%;
+    background-image: url(/images/next.gif);
+}
+/* nyroModal end */
+/* For the details, see: http://flowplayer.org/tools/dateinput/index.html#skinning */
+
+/* the input field */
+.date {
+	border:1px solid #ccc;
+	font-size:12px;
+	padding:0px;
+	height:20px;
+	text-align:center;
+	width:124px;
+	
+	-moz-box-shadow:0 0 10px #eee inset;
+	-webkit-box-shadow:0 0 10px #eee inset;
+}
+
+/* calendar root element */
+#calroot {
+	/* place on top of other elements. set a higher value if nessessary */
+	z-index:10000;
+	
+	margin-top:-1px;
+	width:198px;
+	padding:4px;
+	background-color:#fff;
+	font-size:13px;
+	border:1px solid #ccc;
+	
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	
+	-moz-box-shadow: 0 0 15px #666;
+	-webkit-box-shadow: 0 0 15px #666;	
+}
+
+/* head. contains title, prev/next month controls and possible month/year selectors */
+#calhead {	
+	padding:2px 0;
+	height:22px;
+} 
+
+#caltitle {
+	font-size:14px;
+	color:#0150D1;	
+	float:left;
+	text-align:center;
+	width:155px;
+	line-height:20px;
+	text-shadow:0 1px 0 #ddd;
+}
+
+#calnext, #calprev {
+	display:block;
+	width:20px;
+	height:20px;
+	background:transparent url(../images/prev.gif) no-repeat scroll center center;
+	float:left;
+	cursor:pointer;
+}
+
+#calnext {
+	background-image:url(../images/next.gif);
+	float:right;
+}
+
+#calprev.caldisabled, #calnext.caldisabled {
+	visibility:hidden;	
+}
+
+/* year/month selector */
+#caltitle select {
+	font-size:10px;	
+}
+
+/* names of the days */
+#caldays {
+	height:14px;
+	border-bottom:1px solid #ddd;
+}
+
+#caldays span {
+	display:block;
+	float:left;
+	width:28px;
+	text-align:center;
+}
+
+/* container for weeks */
+#calweeks {
+	background-color:#fff;
+	margin-top:4px;
+}
+
+/* single week */
+.calweek {
+	clear:left;
+	height:22px;
+}
+
+/* single day */
+.calweek a {
+	display:block;
+	float:left;
+	width:27px;
+	height:20px;
+	text-decoration:none;
+	font-size:11px;
+	margin-left:1px;
+	text-align:center;
+	line-height:20px;
+	color:#666;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px; 		
+} 
+
+/* different states */
+.calweek a:hover, .calfocus {
+	background-color:#ddd;
+}
+
+/* sunday */
+a.calsun {
+	color:red;		
+}
+
+/* offmonth day */
+a.caloff {
+	color:#ccc;		
+}
+
+a.caloff:hover {
+	background-color:rgb(245, 245, 250);		
+}
+
+
+/* unselecteble day */
+a.caldisabled {
+	background-color:#efefef !important;
+	color:#ccc	!important;
+	cursor:default;
+}
+
+/* current day */
+#calcurrent {
+	background-color:#498CE2;
+	color:#fff;
+}
+
+/* today */
+#caltoday {
+	background-color:#333;
+	color:#fff;
+}

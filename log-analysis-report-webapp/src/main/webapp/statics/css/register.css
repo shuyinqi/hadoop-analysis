@@ -1,0 +1,110 @@
+@charset "utf-8";
+/* CSS Document */
+div.register_content {
+    width: 826px;
+    margin: 0 auto;
+}
+
+div.register_content .register_content_top {
+    background-image: url(../images/register_content_bg_tb.png);
+    height: 20px;
+  margin-top: 15px;
+}
+
+div.register_content .register_content_center {
+    background-image: url(../images/register_content_bg_center.png);
+    background-position: 0 -30px;
+    padding: 0 55px;
+
+}
+div.register_content .register_content_bottom {
+    background-image: url(../images/register_content_bg_tb.png);
+    background-position: 0 bottom;
+    height: 20px;
+}
+
+.register_content_center form {
+    width: 550px;
+    margin: 5px auto 0;
+    font-size: 12px;
+}
+
+.register_content_center div.privacypolicy {
+    width: 500px;
+    margin: 40px auto 0;
+    padding-bottom: 40px;
+    font-size: 14px;
+    line-height: 200%;
+}
+
+.register_content_center div.register_info{
+    padding: 30px;
+}
+
+.register_content_center div.register_info p{
+    padding: 10px 0 15px 0;
+}
+.register_content_center div.register_info a{
+    color: #2C6EC7;
+    text-decoration: underline;
+}
+.register_content_center form a {
+    text-decoration: underline;
+}
+
+.register_content_center table tr td {
+    padding: 5px 0;
+}
+
+.register_content_center table tr.agree td {
+    padding: 15px 0;
+    letter-spacing: 1px;
+}
+
+.register_content_center table tr.act td span {
+    padding: 0 0 0 60px;
+}
+
+.register_content_center table tr.act td span a {
+    color: #2c6ec7;
+    text-decoration: none;
+}
+
+.register_content_center form#registerForm label.error {
+    color: #f00;
+    font-size: 12px;
+    padding-left: 10px;
+}
+
+.register_content_center h3.title {
+    background-image: url("../images/enterprise_title_bg.png");
+    background-position: 0 5px;
+    background-repeat: no-repeat;
+    font-size: 14px;
+    font-weight: 700;
+    height: 27px;
+    padding: 12px 0 0 30px;
+    margin-top: 10px;
+}
+
+.register_content_center div.result {
+    /*padding: 10px 0;*/
+    /*text-align: left;*/
+	color: #EA5200;
+}
+
+
+div.links div.register_content .register_content_center {
+	padding: 0 23px;
+}
+.links .link_a {
+	padding-top: 20px;
+}
+.links .link_a a{
+	display:block;
+	margin:3px 5px 3px 0;
+	*margin:1px 5px 1px 0;
+	*height: 72px;
+	float: left;
+	width: 150px;
+}

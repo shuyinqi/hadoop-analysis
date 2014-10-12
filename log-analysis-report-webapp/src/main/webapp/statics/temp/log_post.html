@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>日志信息发送接口</title>
+<script type="text/javascript">
+function sdbmit() {
+	var theForm = document.getElementById("form1");
+	var appid = document.getElementById("appid").value;
+	var userid = document.getElementById("userid").value;
+	var cur_url = window.location.href;
+	var urls = cur_url.split("?");
+	if (urls.length < 2) {
+		alert("unknown post server!");
+	} else {
+		var server = urls[1].split("=")[1];
+		theForm.action = "http://" + server + "/logs/app/" + appid
+				+ "/user/" + userid;
+		theForm.submit();
+	}
+}
+</script>
+</head>
+<body>
+	操作日志信息发送：
+	<form name="form1" method="POST" id="form1">
+		<label for="appid">appid</label> <input name="appid" id="appid" value="1000"
+			readonly="readonly" /> <br /> <label for="userid">userid</label> <input
+			name="userid" id="userid" value="2bac35dcf07884cf2cdb5b62fd8a58ac" /> <br />
+		日志JSON示例：
+		({"head":{"appv":"1.0","lon":"116.34928158571428","osv":"2.3.3","req_time":1385,"carrier":"","chn":"market","access":"Wi-Fi","cht":"1","lat":"39.921540614285725","country":"Unknown","version_code":1},"body":{"error":[{"ct":"java.lang.ArithmeticException:
+		divide by zero\n\tat
+		com.mapbar.android.statistics.test.TestDemoActivity$1.onClick(TestDemoActivity.java:46)\n\tat
+		android.view.View.performClick(View.java:2532)\n\tat
+		android.view.View$PerformClick.run(View.java:9277)\n\tat
+		android.os.Handler.handleCallback(Handler.java:587)\n\tat
+		android.os.Handler.dispatchMessage(Handler.java:92)\n\tat
+		android.os.Looper.loop(Looper.java:143)\n\tat
+		android.app.ActivityThread.main(ActivityThread.java:4196)\n\tat
+		java.lang.reflect.Method.invokeNative(Native Method)\n\tat
+		java.lang.reflect.Method.invoke(Method.java:507)\n\tat
+		com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:839)\n\tat
+		com.android.internal.os.ZygoteInit.main(ZygoteInit.java:597)\n\tat
+		dalvik.system.NativeStart.main(Native Method)\n\n","t":"2012-02-14
+		14:49:37"}]}}) <br />
+		<TEXTAREA NAME="content" COLS=130 ROWS=20>{"head":{"appv":"1.0","lon":"116.34928158571428","osv":"2.3.3","req_time":1385,"carrier":"","chn":"market","access":"Wi-Fi","cht":"1","lat":"39.921540614285725","country":"Unknown","version_code":1},"body":{"error":[{"ct":"java.lang.ArithmeticException: divide by zero\n\tat com.mapbar.android.statistics.test.TestDemoActivity$1.onClick(TestDemoActivity.java:46)\n\tat android.view.View.performClick(View.java:2532)\n\tat android.view.View$PerformClick.run(View.java:9277)\n\tat android.os.Handler.handleCallback(Handler.java:587)\n\tat android.os.Handler.dispatchMessage(Handler.java:92)\n\tat android.os.Looper.loop(Looper.java:143)\n\tat android.app.ActivityThread.main(ActivityThread.java:4196)\n\tat java.lang.reflect.Method.invokeNative(Native Method)\n\tat java.lang.reflect.Method.invoke(Method.java:507)\n\tat com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:839)\n\tat com.android.internal.os.ZygoteInit.main(ZygoteInit.java:597)\n\tat dalvik.system.NativeStart.main(Native Method)\n\n","t":"2012-02-14 14:49:37"}]}}
+	</TEXTAREA>
+		<br /> <input type="button" value="Submit" id="sdbutton"
+			onclick="sdbmit();" />
+	</form>
+</body>
+</html>

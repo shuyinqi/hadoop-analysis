@@ -1,0 +1,315 @@
+.b_apps {
+    margin-top: 15px;
+}
+.b_apps .b_apps_top {
+    height: 42px;
+    background-image: url(../../images/main/b_apps_bg.png);
+    background-repeat: no-repeat;
+}
+
+.b_apps .b_apps_center {
+    /*background-image: url(../../images/main/b_apps_center_bg.png);*/
+    /*background-repeat: repeat-y;*/
+    padding: 20px 50px;
+}
+.edit_app .b_apps .b_apps_center {
+	background-image: none;
+}
+.b_apps .b_apps_bottom {
+    height: 12px;
+    background-image: url(../../images/main/b_apps_bg.png);
+    background-repeat: no-repeat;
+    background-position: 0 bottom;
+}
+.edit_app .b_apps .b_apps_bottom {
+	background-image: none;
+}
+.b_apps_top h3.title {
+    padding: 11px 0 0 10px;
+}
+
+.b_apps_top h3.title span {
+    background-image: url(../../images/main/b_apps_title_bg.png);
+	/*background-position: 0 0;*/
+    background-repeat: no-repeat;
+    color: #b3b3b3;
+    padding: 0 0 0 21px;
+    margin-right: 25px;
+}
+
+.b_apps_top h3.title span a {
+    color: #19456F;
+    font-size: 14px;
+}
+
+.b_apps_top h3.title span.title {
+    background-image: none;
+    color: #000;
+    margin-right: 35px;
+}
+
+.b_apps_top h3.title span.add {
+    background-position: 0 5px;
+    *background-position: 0 1px;
+}
+
+.b_apps_top h3.title span.down {
+    background-position: 0 -15px;
+    *background-position: 0 -17px;
+}
+
+.b_apps_top h3.title span.document {
+    background-position: 0 -78px;
+}
+
+.b_apps_top h3.title span.question {
+    background-image: url("../../images/main/b_h3_question.png");
+    height: 19px;
+    margin: 2px 10px 0 0;
+    width: 19px;
+    padding: 0;
+    cursor: pointer;
+}
+
+.b_apps .b_apps_center table.b_addApps {
+    margin: 0 auto;
+}
+
+.b_apps .b_apps_center table.b_addApps td {
+    padding: 10px 0;
+}
+
+.b_apps .b_apps_center table.b_addApps td .b_apps_in {
+    height: 25px;
+    width: 340px;
+    border: 1px solid #ccc;
+    vertical-align: middle;
+}
+
+.b_apps .b_apps_center table.b_addApps b {
+    font-size: 14px;
+}
+
+.b_apps .b_apps_center table.b_addApps td textarea {
+    height: 200px;
+    width: 340px;
+    border: 1px solid #ccc;
+}
+
+.b_apps .b_apps_center table.b_addApps td input.app_submit {
+/*background-image: url("../../images/main/b_apps_button_normal.png");*/
+    display: block;
+    text-indent: -99999px;
+
+}
+
+.b_apps_successful .b_apps_succ_info {
+    border-right: 1px #e6e6e6 solid;
+    padding: 21px 80px 0 40px;
+    background-image: url("../../images/main/b_app_add2_bg.jpg");
+    background-repeat: no-repeat;
+    width: 250px;
+    height: 255px;
+}
+
+.b_apps_successful .b_apps_succ_info input {
+    height: 24px;
+    margin-top: 5px;
+    width: 190px;
+	text-align: center;
+}
+
+#b_center .b_sdk_down {
+/*width: 187px;*/ 
+}
+
+.b_apps_successful .b_apps_succ_info div {
+    line-height: 200%;
+    font-size: 14px;
+}
+
+.b_apps_successful .b_apps_succ_info div div.t_appkey_v {
+    width: 185px;
+	height: 19px;
+	margin: 5px 0 0 0;
+	background-color: #FFF;
+	background-image: none;
+	padding: 5px 0 0;
+	text-align: center;
+	line-height: 100%;
+	font-size: 12px;
+}
+
+.b_apps_succ_right .link_to_document {
+    padding: 35px 0 0 10px;
+}
+
+.b_apps_succ_right {
+    margin-left:35px;
+}
+
+.b_apps_succ_right div {
+    font-size: 14px;
+    font-weight: 700;
+    padding-bottom: 20px;
+    width: 360px;
+    line-height: 180%;
+}
+.b_apps_succ_right .sdk_down_h3 {
+	margin-bottom: 20px;
+}
+.b_apps_succ_right div.link_to_document {
+	font-size: 12px;
+	font-weight: 100;
+	padding: 3px 0 0 10px;
+}
+.b_apps_succ_right .link_to_document a {
+    color: #224e9f;
+}
+.appkey_new_intro {
+	color: #1a1a1a;
+}
+.app_key_new_step {
+	height: 60px;
+	background-image: url("../../images/main/app_key_new_step.gif");
+	background-repeat: no-repeat;
+	background-position: 0 -76px;
+	margin: 15px auto;
+}
+.step_two {
+	background-position: 0 0;
+}
+.add_app_key_finished {
+	font-size: 14px;
+	line-height: 150%;
+}
+.add_app_key_finished #xsnazzy .xboxcontent{
+	padding: 20px 20px;
+}
+.add_app_key_finished #xsnazzy_1 .xboxcontent{
+	padding: 10px 15px;
+	font-size: 12px;
+}
+.add_app_key_finished #xsnazzy_1 .xboxcontent p {
+    padding: 0;
+}
+.add_app_key_finished #xsnazzy_2 .xboxcontent{
+	padding: 6px 10px 10px;font-size: 12px;
+}
+.add_app_key_finished .app_key_info {
+	width: 205px;
+	margin-right: 10px;
+}
+.add_app_key_finished .app_key_info h3.title {
+	background-image: url("../../images/main/finished_icon.png");
+    background-position:0 3px;
+	background-repeat: no-repeat;
+	padding-left: 30px;
+	height: 30px;
+}
+
+.add_app_key_finished .app_key_info .appkey_faq h3.title {
+	border-bottom: 2px solid #506CAD;
+	background-image: none;
+	padding: 15px 0 0px 20px;
+	height: 26px;
+	color: #515151;
+}
+.add_app_key_finished #xsnazzy_1 .xboxcontent p {
+    padding: 0 0 0 30px;
+}
+
+.t_appkey_v {
+	background-color: #FFF;
+	padding: 3px;
+	margin-top: 10px;
+	text-align: center;
+}
+.add_app_key_finished #xsnazzy_1 {
+	line-height: 200%;
+	font-size: 14px;
+}
+.add_app_key_finished span.number {
+    background-image: url("../../images/main/update_step_bg.gif");
+    background-position: -133px -136px;
+    color: #FFFFFF;
+    display: block;
+    font-size: 19px;
+    font-weight: bold;
+    height: 26px;
+    padding: 2px 0 0 13px;
+    text-align: left;
+    width: 28px;
+}
+.add_app_key_finished p {
+	padding: 5px 0;
+}
+.add_app_key_finished p.li{
+	background-image: url(../../images/main/round-img.gif);
+	background-repeat: no-repeat;
+	padding-left: 15px;
+	background-position: 1px 13px;
+}
+.add_app_key_finished p.code_2 {
+	width: 650px;
+	height: 310px;
+	background-image: url(../../images/main/code_2.gif);
+	margin: 10px 0;
+}
+
+.code_3-1 {
+	background-image: url(../../images/main/code_b.gif);
+	background-position: 0 0;
+	height: 134px;
+}
+.code_3-2 {
+	background-image: url(../../images/main/code_b.gif);
+	background-position: 0 -181px;
+	height: 136px;
+}
+.code_4 {
+	background-image: url(../../images/main/code_b.gif);
+	background-position: 0 -340px;
+	height: 84px;
+}
+
+.add_app_key_finished .intro,.add_app_key_finished .intro b {
+	font-size: 12px;
+}
+.app_finised_bottom {
+	margin-top: 0px;
+	padding:10px 20px;
+	background-color: #FFFCF3;
+    border: 1px solid #EEBE7C;
+
+}
+.app_key_info a.sdk_down {
+	background-image: url("../../images/main/b_down_load_sdk_count_normal.png");
+    display: block;
+    height: 49px;
+    width: 203px;
+	margin-top: 10px;
+}
+.app_key_info a.sdk_down:hover {
+	 background-image: url("../../images/main/b_down_load_sdk_count_hover.png");
+}
+.add_app_key_finished .code_p {
+	background-color: #f4f4f4;
+	padding: 10px 20px;
+	color: #516cad;
+	margin: 10px auto;
+	font-size: 12px;
+}
+.add_app_key_finished .app_key_info .appkey_faq ul li {
+	border-bottom: 1px solid #C3C3C3;
+}
+.add_app_key_finished .app_key_info .appkey_faq ul li a{
+	display: block;
+	padding:5px 0 5px 21px;
+	font-size: 12px;
+	font-weight: normal;
+	background-image: url(../../images/main/appkey_faq_a.gif);
+	background-repeat: no-repeat;
+	background-position: 10px 12px;
+	color: #515151;
+}
